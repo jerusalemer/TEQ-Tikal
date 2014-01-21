@@ -16,4 +16,42 @@ public class Candidate {
 
     private Set<Group> groups;
     private Set<Expertise> expertises;
+
+    public Candidate(String phone, String lastName, String firstName, String email, Set<Group> groups, Set<Expertise> expertises) {
+        this.phone = phone;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.groups = groups;
+        this.expertises = expertises;
+        this.registrationDate = new Date();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public Set<Expertise> getExpertises() {
+        return expertises;
+    }
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
 }
