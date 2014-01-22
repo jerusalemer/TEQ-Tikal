@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * Created by tema on 1/21/14.
+ * Created by Art on 1/21/14.
  */
 public class Candidate {
 
@@ -17,7 +17,7 @@ public class Candidate {
     private Set<Group> groups;
     private Set<Expertise> expertises;
 
-    public Candidate(String phone, String lastName, String firstName, String email, Set<Group> groups, Set<Expertise> expertises) {
+    public Candidate(String phone, String lastName, String firstName, String email, Set<Group> groups) {
         this.phone = phone;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -49,6 +49,10 @@ public class Candidate {
 
     public Set<Expertise> getExpertises() {
         return expertises;
+    }
+
+    public void setExpertises(Set<Expertise> expertises) {
+        this.expertises = expertises;
     }
 
     public Date getRegistrationDate() {

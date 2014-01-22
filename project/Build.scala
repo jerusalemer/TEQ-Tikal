@@ -11,7 +11,8 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaEbean,
+    "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.13"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

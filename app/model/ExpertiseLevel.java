@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by tema on 1/21/14.
+ * Created by Art on 1/21/14.
  */
 public enum ExpertiseLevel {
 
