@@ -55,6 +55,21 @@ public class MainController extends Controller {
         return ok(result);
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result registerQuestionnaire(){
+        throw  new UnsupportedOperationException("unimplemented method");
+    }
+
+
+
+    public static Result sendQuestioneeryToCandidate(String email, Set<Group> questioneeries){
+        Candidate candidate = candidateDao.get(email);
+        if(candidate == null){
+            return notFound();
+        }
+        return ok("Questioneeries were successfully sent to " + email);
+    }
+
     private static Candidate createCandidate() {
         JsonNode json = request().body().asJson();
 
