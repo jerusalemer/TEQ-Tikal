@@ -1,10 +1,8 @@
 package controllers;
 
+import dao.CandidateDao;
 import model.Candidate;
-import model.Expertise;
-import model.ExpertiseLevel;
 import model.Group;
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
@@ -12,19 +10,18 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * Created by Art on 1/21/14.
  */
 public class MainController extends Controller {
+
+    private static CandidateDao candidateDao = new CandidateDao();
 
     public static Result sendQuestionnaire() {
         return ok("send questionnaire");
@@ -34,7 +31,7 @@ public class MainController extends Controller {
      * Candidate JSON example:
      * {"email":"michael.owen@gmail.com","firstName":"michael","lastName":"owen","phone":"052-123456","groups":["JAVASCRIPT","JAVA"]}
      */
-    //@BodyParser.Of(BodyParser.Json.class)
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result registerCandidate() {
         Candidate candidate = createCandidate();
         String validationError = validate(candidate);
@@ -48,17 +45,14 @@ public class MainController extends Controller {
 
     }
 
-    public static Result findCandidate(){
-        Set<Group> groups = new HashSet(Arrays.asList(Group.JAVA, Group.JAVASCRIPT));
-        Candidate candidate = new Candidate("052-123456", "owen", "michael", "michael.owen@gmail.com", groups);
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            objectMapper.writeValue(System.out, candidate);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result findCandidate(String email){
+        Candidate candidate = candidateDao.get(email);
+        if(candidate == null){
+            return notFound();
         }
-
-        return ok("xxx");
+        ObjectNode result = (ObjectNode) Json.toJson(candidate);
+        return ok(result);
     }
 
     private static Candidate createCandidate() {
@@ -76,6 +70,7 @@ public class MainController extends Controller {
     }
 
     private static Candidate save(Candidate candidate) {
+        candidateDao.save(candidate);
         return candidate;
     }
 
