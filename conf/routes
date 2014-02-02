@@ -11,3 +11,5 @@ GET         /assets/*file              controllers.Assets.at(path="/public", fil
 POST        /send-questionnaire        controllers.MainController.sendQuestionnaire()
 POST        /candidate                 controllers.MainController.registerCandidate()
 GET         /candidate/:email          controllers.MainController.findCandidate(email: String)
+GET         /questionnarie/:group      controllers.MainController.getQuestionnaire(group: String)
+GET         /questionnarie/:email/:groups  controllers.MainController.getQuestionnarie(email: String, groups: String)

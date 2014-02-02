@@ -11,6 +11,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CandidateDao {
 
     private Map<String, Candidate> candidateMap = new ConcurrentHashMap<>();
+    private static CandidateDao instance = new CandidateDao();
+
+    private CandidateDao(){}
+
+    public static CandidateDao getInstance(){
+        return instance;
+    }
 
     public void save(Candidate candidate){
         candidateMap.put(candidate.getEmail(), candidate);

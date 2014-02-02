@@ -1,0 +1,41 @@
+@(candidate: model.Candidate, questionGroups: List[model.QuestionGroup])
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Questionnaire</title>
+</head>
+<body>
+
+
+    <h3>Welcome, @candidate.getFirstName() @candidate.getLastName() </h3>
+
+    Please fill in your years of experience and your level of knowledge at the table below <br/><br/><br/>
+
+    <table>
+        <tr>
+            <th>Level Of Knowledge</th>
+            <th>Subject</th>
+            <th>Years of experience</th>
+        </tr>
+        @for(questionGroup <- questionGroups) {
+            <tr>
+                <td colspan="3"><b>@questionGroup.getName()</b></td>
+            </tr>
+
+
+            @for(question <- questionGroup.getQuestions()){
+                <tr>
+                <td>Expert</td>
+                <td>@question</td>
+                <td>4</td>
+                </tr>
+            }
+
+        }
+
+    </table>
+
+
+</body>
+</html>

@@ -23,7 +23,6 @@ public class Candidate {
         this.firstName = firstName;
         this.email = email;
         this.groups = groups;
-        this.expertises = expertises;
         this.registrationDate = new Date();
     }
 
