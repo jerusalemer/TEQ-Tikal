@@ -12,7 +12,10 @@ object ApplicationBuild extends Build {
     javaCore,
     javaJdbc,
     javaEbean,
-    "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.13"
+    "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.13",
+    "org.springframework" % "spring-core" % "4.0.0.RELEASE",
+    "org.springframework" % "spring-asm" % "3.1.4.RELEASE",
+    "org.springframework" % "spring-context" % "4.0.0.RELEASE"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

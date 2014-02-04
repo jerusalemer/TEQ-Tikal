@@ -23,8 +23,8 @@ import java.util.*;
  */
 public class MainController extends Controller {
 
-    private static CandidateDao candidateDao = CandidateDao.getInstance();
-    private static QuestionnarieDao questionnarieDao = QuestionnarieDao.getInstance();
+    private static CandidateDao candidateDao;
+    private static QuestionnarieDao questionnarieDao;
 
     public static Result sendQuestionnaire() {
         return ok("send questionnaire");
@@ -98,11 +98,13 @@ public class MainController extends Controller {
     private static void mergeQuestionGroups(QuestionGroup newQuestionGroup, List<QuestionGroup> questionGroups) {
         int questionGroupIndex = questionGroups.indexOf(newQuestionGroup);
         QuestionGroup currentQuestionGroup = questionGroups.get(questionGroupIndex);
+        List<String> newQuestions = new ArrayList<>();
         for (String newQuestion : newQuestionGroup.getQuestions()) {
             if (!currentQuestionGroup.getQuestions().contains(newQuestion)) {
-                currentQuestionGroup.getQuestions().add(newQuestion);
+                newQuestions.add(newQuestion);
             }
         }
+        currentQuestionGroup.getQuestions().addAll(newQuestions);
     }
 
     private static Set<Questionnarie> getRelevantQuestionnaries(String groups) {
@@ -187,6 +189,11 @@ public class MainController extends Controller {
         }
 
         return null;
+    }
+
+    public static void setUp(CandidateDao candidateDao, QuestionnarieDao questionnarieDao){
+        MainController.candidateDao = candidateDao;
+        MainController.questionnarieDao = questionnarieDao;
     }
 
 }
