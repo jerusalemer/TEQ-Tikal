@@ -1,4 +1,4 @@
-@(candidate: model.Candidate, questionGroups: List[model.QuestionGroup])
+@(candidate: model.Candidate, expertiseGroups: List[model.ExpertiseGroup])
 
 <!DOCTYPE html>
 
@@ -119,11 +119,6 @@
         margin-right: 35px;
         }
 
-        fiedlset p {
-        clear: both;
-        padding: 5px;
-        }
-
         select {
         width: 200px;
         float: right;
@@ -154,7 +149,9 @@
         </style>
     </head>
     <body>
-        <form action="fill_questionnaire" method="post">
+        @helper.form(action = routes.QuestionnaireController.fillQuestionnarie){
+
+            <input type="hidden" name="candidateEmail" value="@candidate.getEmail()"/>
 
 
             <div class="header">
@@ -176,20 +173,23 @@
                     </label>
                 </div>
 
-                @for(questionGroup <- questionGroups) {
+                @for(expertiseGroup <- expertiseGroups) {
                     <fieldset>
                     <legend></legend>
-                    <p><h4>@questionGroup.getName()</h4></p>
+                    <p>
+                        <h4>@expertiseGroup.getName()</h4>
+                    </p>
 
-                    @for(question <- questionGroup.getQuestions()){
-                        <p> <label class="field2" >@question</label>
-                            <select name="@(questionGroup.getName() + "_" + question + "_level")">
+                    @for(expertise <- expertiseGroup.getExpertise()){
+                        <p> <label class="field2" >@expertise.getName()</label>
+                            <input type="hidden" name="expertise" value="@(expertiseGroup.getName() + "_" + expertise.getName)"/>
+                            <select name="@(expertiseGroup.getName() + "_" + expertise.getName + "_level")">
                                 <option value="none"></option>
                                 <option value="Basic">Basic</option>
                                 <option value="Developer">Developer</option>
                                 <option value="Expert">Expert</option>
                             </select>
-                            <input class="number" step="0.5" type="number"  name="@(questionGroup.getName() + "_" + question + "_years")"/>
+                            <input class="number" step="0.5" type="number"  name="@(expertiseGroup.getName() + "_" + expertise.getName + "_years")"/>
                         </p>
                     }
                     </fieldset>
@@ -200,7 +200,7 @@
             </div>
             <button type="submit">Submit</button>
             <div class="footer"></div>
-        </form>
+        }
 
     </body>
 </html>

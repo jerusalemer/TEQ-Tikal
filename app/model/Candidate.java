@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public class Candidate {
     private Date registrationDate;
 
     private Set<Group> groups;
-    private Set<Expertise> expertises;
+    private List<ExpertiseGroup> expertises;
 
     public Candidate(String phone, String lastName, String firstName, String email, Set<Group> groups) {
         this.phone = phone;
@@ -46,11 +47,11 @@ public class Candidate {
         return groups;
     }
 
-    public Set<Expertise> getExpertises() {
+    public List<ExpertiseGroup> getExpertises() {
         return expertises;
     }
 
-    public void setExpertises(Set<Expertise> expertises) {
+    public void setExpertises(List<ExpertiseGroup> expertises) {
         this.expertises = expertises;
     }
 

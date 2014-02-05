@@ -9,11 +9,11 @@ public class Questionnarie {
 
     private int id;
     private Group group;
-    private List<QuestionGroup> questionGroups;
+    private List<ExpertiseGroup> expertiseGroups;
 
-    public Questionnarie(Group group, List<QuestionGroup> questionGroups) {
+    public Questionnarie(Group group, List<ExpertiseGroup> expertiseGroups) {
         this.group = group;
-        this.questionGroups = questionGroups;
+        this.expertiseGroups = expertiseGroups;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class Questionnarie {
 
         if (id != that.id) return false;
         if (group != that.group) return false;
-        if (questionGroups != null ? !questionGroups.equals(that.questionGroups) : that.questionGroups != null)
+        if (expertiseGroups != null ? !expertiseGroups.equals(that.expertiseGroups) : that.expertiseGroups != null)
             return false;
 
         return true;
@@ -35,7 +35,7 @@ public class Questionnarie {
     public int hashCode() {
         int result = id;
         result = 31 * result + (group != null ? group.hashCode() : 0);
-        result = 31 * result + (questionGroups != null ? questionGroups.hashCode() : 0);
+        result = 31 * result + (expertiseGroups != null ? expertiseGroups.hashCode() : 0);
         return result;
     }
 
@@ -51,8 +51,8 @@ public class Questionnarie {
         return group;
     }
 
-    public List<QuestionGroup> getQuestionGroups() {
-        return questionGroups;
+    public List<ExpertiseGroup> getExpertiseGroups() {
+        return expertiseGroups;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Questionnarie {
         return "Questionnarie{" +
                 "id=" + id +
                 ", group=" + group +
-                ", questionGroups=" + questionGroups +
+                ", expertiseGroups=" + expertiseGroups +
                 '}';
     }
 }

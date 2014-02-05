@@ -3,6 +3,8 @@ package dao;
 import model.Candidate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,6 +18,10 @@ public class CandidateDao {
 
     public void save(Candidate candidate){
         candidateMap.put(candidate.getEmail(), candidate);
+    }
+
+    public List<Candidate> getAll(){
+        return new ArrayList<>(candidateMap.values());
     }
 
     public Candidate get(String email){

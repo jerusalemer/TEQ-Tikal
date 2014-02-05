@@ -9,14 +9,16 @@ public class Expertise {
 
     private String name;
     private ExpertiseLevel level;
-    private int yearsOfExperience;
-    private Set<Group> relevantGroups;
+    private double yearsOfExperience;
 
-    public Expertise(String name, ExpertiseLevel level, int yearsOfExperience, Set<Group> relevantGroups) {
+    public Expertise(String name, ExpertiseLevel level, double yearsOfExperience) {
         this.name = name;
         this.level = level;
         this.yearsOfExperience = yearsOfExperience;
-        this.relevantGroups = relevantGroups;
+    }
+
+    public Expertise(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -27,11 +29,8 @@ public class Expertise {
         return level;
     }
 
-    public int getYearsOfExperience() {
+    public double getYearsOfExperience() {
         return yearsOfExperience;
     }
 
-    public Set<Group> getRelevantGroups() {
-        return relevantGroups;
-    }
 }

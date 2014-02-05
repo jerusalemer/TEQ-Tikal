@@ -5,29 +5,29 @@ import java.util.List;
 /**
  * Created by Art on 1/27/14.
  */
-public class QuestionGroup {
+public class ExpertiseGroup {
 
     private String name;
-    private List<String> questions;
+    private List<Expertise> expertise;
 
-    public QuestionGroup(String name, List<String> questions) {
+    public ExpertiseGroup(String name, List<Expertise> expertise) {
         this.name = name;
-        this.questions = questions;
+        this.expertise = expertise;
     }
 
     public String getName() {
         return name;
     }
 
-    public List<String> getQuestions() {
-        return questions;
+    public List<Expertise> getExpertise() {
+        return expertise;
     }
 
     @Override
     public String toString() {
-        return "QuestionGroup{" +
+        return "ExpertiseGroup{" +
                 "name='" + name + '\'' +
-                ", questions=" + questions +
+                ", expertise=" + expertise +
                 '}';
     }
 
@@ -36,7 +36,7 @@ public class QuestionGroup {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        QuestionGroup that = (QuestionGroup) o;
+        ExpertiseGroup that = (ExpertiseGroup) o;
 
         if (!name.equals(that.name)) return false;
 
