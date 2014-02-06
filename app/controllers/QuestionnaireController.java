@@ -9,7 +9,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.fill_questionnarie;
+import views.html.candidate_questionnarie;
 
 import java.util.*;
 
@@ -41,7 +41,7 @@ public class QuestionnaireController extends Controller {
         Set<Questionnarie> questionnaries = getRelevantQuestionnaries(groups);
         List<ExpertiseGroup> expertiseGroups = mergeQuestionnaries(questionnaries);
 
-        return ok(fill_questionnarie.render(candidate, expertiseGroups));
+        return ok(candidate_questionnarie.render(candidate, expertiseGroups));
     }
 
     public static Result fillQuestionnarie(){

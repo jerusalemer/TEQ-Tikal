@@ -9,9 +9,9 @@ public class Expertise {
 
     private String name;
     private ExpertiseLevel level;
-    private double yearsOfExperience;
+    private Double yearsOfExperience;
 
-    public Expertise(String name, ExpertiseLevel level, double yearsOfExperience) {
+    public Expertise(String name, ExpertiseLevel level, Double yearsOfExperience) {
         this.name = name;
         this.level = level;
         this.yearsOfExperience = yearsOfExperience;
@@ -29,7 +29,7 @@ public class Expertise {
         return level;
     }
 
-    public double getYearsOfExperience() {
+    public Double getYearsOfExperience() {
         return yearsOfExperience;
     }
 

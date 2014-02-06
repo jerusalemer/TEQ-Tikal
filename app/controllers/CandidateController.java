@@ -9,6 +9,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.candidate_questionnarie;
 import views.html.candidates;
 
 import java.util.HashSet;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by tema on 2/5/14.
+ * Created by Art on 2/5/14.
  */
 public class CandidateController extends Controller {
 
@@ -33,8 +34,8 @@ public class CandidateController extends Controller {
         if (candidate == null) {
             return notFound();
         }
-        ObjectNode result = (ObjectNode) Json.toJson(candidate);
-        return ok(result);
+
+        return ok(candidate_questionnarie.render(candidate, candidate.getExpertises()));
     }
 
     static Candidate save(Candidate candidate) {

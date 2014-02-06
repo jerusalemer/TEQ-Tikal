@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by tema on 1/26/14.
+ * Created by Art on 1/26/14.
  */
 @Component
 public class CandidateDao {

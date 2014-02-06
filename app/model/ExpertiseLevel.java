@@ -6,4 +6,5 @@ package model;
 public enum ExpertiseLevel {
 
     BASIC,DEVELOPER, EXPERT
+
 }

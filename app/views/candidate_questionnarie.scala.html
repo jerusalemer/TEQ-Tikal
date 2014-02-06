@@ -183,13 +183,15 @@
                     @for(expertise <- expertiseGroup.getExpertise()){
                         <p> <label class="field2" >@expertise.getName()</label>
                             <input type="hidden" name="expertise" value="@(expertiseGroup.getName() + "_" + expertise.getName)"/>
-                            <select name="@(expertiseGroup.getName() + "_" + expertise.getName + "_level")">
+
+
+                             <select name="@(expertiseGroup.getName() + "_" + expertise.getName + "_level")">
                                 <option value="none"></option>
-                                <option value="Basic">Basic</option>
-                                <option value="Developer">Developer</option>
-                                <option value="Expert">Expert</option>
+                                <option value="BASIC"> Basic</option>
+                                <option value="DEVELOPER">Developer</option>
+                                <option value="EXPERT">Expert</option>
                             </select>
-                            <input class="number" step="0.5" type="number"  name="@(expertiseGroup.getName() + "_" + expertise.getName + "_years")"/>
+                            <input class="number" step="0.5" type="number" value="@expertise.getYearsOfExperience"  name="@(expertiseGroup.getName() + "_" + expertise.getName + "_years")"/>
                         </p>
                     }
                     </fieldset>
