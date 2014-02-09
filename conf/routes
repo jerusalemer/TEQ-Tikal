@@ -9,5 +9,5 @@ POST        /candidate                           controllers.CandidateController
 GET         /candidate/:email                    controllers.CandidateController.findCandidate(email: String)
 GET         /candidate                           controllers.CandidateController.getAll()
 GET         /questionnarie/:group                controllers.QuestionnaireController.getQuestionnaire(group: String)
-GET         /questionnarie/:email/:groups        controllers.QuestionnaireController.getQuestionnarie(email: String, groups: String)
+GET         /candidate/:email                    controllers.CandidateController.getQuestionnarie(email: String)
 POST        /questionnaire                       controllers.QuestionnaireController.fillQuestionnarie()

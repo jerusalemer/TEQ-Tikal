@@ -4,6 +4,10 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
+
+        <script type="text/javascript" src="@routes.Assets.at("/javascripts/jquery-1.9.0.min.js")"></script>
+
+
         <meta charset="utf-8" />
         <title></title>
         <style>
@@ -184,15 +188,20 @@
                         <p> <label class="field2" >@expertise.getName()</label>
                             <input type="hidden" name="expertise" value="@(expertiseGroup.getName() + "_" + expertise.getName)"/>
 
-
-                             <select name="@(expertiseGroup.getName() + "_" + expertise.getName + "_level")">
+                             <select id="@((expertiseGroup.getName() + "_" + expertise.getName + "_level").replace(' ', '_'))"
+                                name="@(expertiseGroup.getName() + "_" + expertise.getName + "_level")">
                                 <option value="none"></option>
-                                <option value="BASIC"> Basic</option>
+                                <option value="BASIC">Basic</option>
                                 <option value="DEVELOPER">Developer</option>
                                 <option value="EXPERT">Expert</option>
                             </select>
                             <input class="number" step="0.5" type="number" value="@expertise.getYearsOfExperience"  name="@(expertiseGroup.getName() + "_" + expertise.getName + "_years")"/>
                         </p>
+
+                        <script>
+                            $('select#@((expertiseGroup.getName() + "_" + expertise.getName + "_level").replace(' ', '_')) option[value="@expertise.getLevel"]').attr("selected", "selected");
+                        </script>
+
                     }
                     </fieldset>
                     <br/>

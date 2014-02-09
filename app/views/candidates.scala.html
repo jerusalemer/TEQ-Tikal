@@ -1,12 +1,68 @@
 @(candidates: java.util.List[model.Candidate])
+@import org.apache.commons.lang3.StringUtils
 
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-    <head></head>
+    <head>
+        <style>
+        .rounded-corner
+        {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 14px;
+        margin-left: 30px;
+        width: 480px;
+        text-align: left;
+        border-collapse: collapse;
+        }
+
+        .rounded-corner th
+        {
+        padding: 8px;
+        font-weight: normal;
+        font-size: 16px;
+        color: #039;
+        background: #b9c9fe;
+        border-left:1px solid #fff;
+        width: 100%;
+        }
+        .rounded-corner td
+        {
+        padding: 8px;
+        background: #e8edff;
+        border-top: 1px solid #fff;
+        border-left:1px solid #fff;
+        color: #669;
+        white-space:nowrap;
+        }
+        .rounded-corner tbody tr:hover td
+        {
+        background: #d0dafd;
+        }
+
+        .header {
+        margin-left:30px;
+        }
+
+        h3 {
+        margin: 1em 0 0.5em 0;
+        font-weight: 600;
+        font-family: 'Titillium Web', sans-serif;
+        position: relative;
+        text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
+        font-size: 22px;
+        line-height: 40px;
+        color: #355681;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(53,86,129, 0.3);
+        }
+
+
+        </style>
+    </head>
     <body>
-        <h3>Candidates</h3>
-        <table>
+        <div class="header"> <h3>Candidates</h3> </div>
+        <table class="rounded-corner">
             <tr>
                 <th>Name</th>
                 <th>Email</th>
@@ -14,7 +70,7 @@
             </tr>
             @for(candidate <- candidates){
                 <tr>
-                    <td><a href="@{routes.CandidateController.findCandidate(candidate.getEmail)}">@candidate.getFirstName @candidate.getLastName</a></td>
+                    <td><a href="@{routes.CandidateController.getQuestionnarie(candidate.getEmail)}">@candidate.getFirstName @candidate.getLastName</a></td>
                     <td>@candidate.getEmail</td>
                     <td>@candidate.getGroups</td>
                 </tr>

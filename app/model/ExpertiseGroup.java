@@ -47,4 +47,5 @@ public class ExpertiseGroup {
     public int hashCode() {
         return name.hashCode();
     }
+
 }

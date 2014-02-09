@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +26,7 @@ public class Candidate {
         this.email = email;
         this.groups = groups;
         this.registrationDate = new Date();
+        this.expertises = new ArrayList<>();
     }
 
     public String getPhone() {

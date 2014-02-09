@@ -9,6 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import play.Application;
 import play.GlobalSettings;
 import play.api.Play;
+import service.CandidateFactory;
 import spring.SpringConfig;
 
 import java.util.*;
@@ -34,18 +35,12 @@ public class Global extends GlobalSettings {
         candidateController.setUp(candidateDao);
 
         //todo for test only, remove when tests are done
-        setupMockObjects(candidateDao, questionnarieDao);
+        setupMockObjects(questionnarieDao, ctx.getBean(CandidateFactory.class));
 
         super.onStart(app);
     }
 
-    private void setupMockObjects(CandidateDao candidateDao, QuestionnarieDao questionnarieDao) {
-        Candidate candidate = new Candidate("052123453", "Owen", "Michael", "owen@liverpool.com", EnumSet.of(Group.JAVA, Group.ALM));
-        candidateDao.save(candidate);
-
-        candidate = new Candidate("052123454", "Gerrard", "Steven", "gerrard@liverpool.com", EnumSet.of(Group.JAVA, Group.ALM));
-        candidateDao.save(candidate);
-
+    private void setupMockObjects(QuestionnarieDao questionnarieDao, CandidateFactory candidateFactory) {
 
         List<ExpertiseGroup> almExpertiseGroups = new ArrayList<>();
         almExpertiseGroups.add(new ExpertiseGroup("Operating Systems", new ArrayList<>(Arrays.asList(new Expertise("Linux"), new Expertise("Windows"), new Expertise("Solaris")))));
@@ -56,6 +51,9 @@ public class Global extends GlobalSettings {
         javaExpertiseGroups.add(new ExpertiseGroup("Java Language", new ArrayList<>(Arrays.asList(new Expertise("Developing Java Classes"), new Expertise("Using threads")))));
         javaExpertiseGroups.add(new ExpertiseGroup("Database", new ArrayList<>(Arrays.asList(new Expertise("Oracle"),new Expertise("My Sql")))));
         questionnarieDao.save(new Questionnarie(Group.JAVA, javaExpertiseGroups));
+
+        candidateFactory.createCandidate("052123454", "Steven", "Gerrard", "gerrard@liverpool.com", EnumSet.of(Group.JAVA));
+        candidateFactory.createCandidate("052123453", "Michael", "Owen", "owen@liverpool.com", EnumSet.of(Group.JAVA, Group.ALM));
     }
 
     @Override

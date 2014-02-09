@@ -3,6 +3,7 @@ package controllers;
 import dao.CandidateDao;
 import dao.QuestionnarieDao;
 import model.*;
+import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 import play.libs.Json;
@@ -31,50 +32,37 @@ public class QuestionnaireController extends Controller {
         return ok(result);
     }
 
-    // Groups - comma separated questionnarie groups
-    public static Result getQuestionnarie(String candidateEmail, String groups) {
-        Candidate candidate = candidateDao.get(candidateEmail);
-        if (candidate == null) {
-            return notFound();
-        }
 
-        Set<Questionnarie> questionnaries = getRelevantQuestionnaries(groups);
-        List<ExpertiseGroup> expertiseGroups = mergeQuestionnaries(questionnaries);
-
-        return ok(candidate_questionnarie.render(candidate, expertiseGroups));
-    }
-
-    public static Result fillQuestionnarie(){
+    public static Result fillQuestionnarie() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         String candidateEmail = formData.get("candidateEmail")[0];
         Candidate candidate = candidateDao.get(candidateEmail);
-        if(candidate == null){
+        if (candidate == null) {
             return notFound();
         }
 
 
         List<ExpertiseGroup> expertiseGroups = new ArrayList<>();
         candidate.setExpertises(expertiseGroups);
-        for(String fullExpertiseStr : formData.get("expertise")){
-            String expertiseLevel = formData.get(fullExpertiseStr+"_level")[0];
-            String expertiseYears = formData.get(fullExpertiseStr+"_years")[0];
-            if(expertiseYears != null && !expertiseYears.isEmpty() && expertiseLevel != null && !"none".equals(expertiseLevel)){
+        for (String fullExpertiseStr : formData.get("expertise")) {
+            String expertiseLevelStr = formData.get(fullExpertiseStr + "_level")[0];
+            ExpertiseLevel expertiseLevel = expertiseLevelStr == null || "None".equalsIgnoreCase(expertiseLevelStr) ? null : ExpertiseLevel.valueOf(expertiseLevelStr.toUpperCase());
+            String expertiseYearsStr = formData.get(fullExpertiseStr + "_years")[0];
+            Double expertiseYears = StringUtils.isEmpty(expertiseYearsStr) ? null : Double.valueOf(expertiseYearsStr);
 
-                //question = questionGroup.getName() + "_" + question
-                String[] expertiseSplitted = fullExpertiseStr.split("_");
-                String expertiseGroupName = expertiseSplitted[0];
-                String expertise = expertiseSplitted[1];
+            //question = questionGroup.getName() + "_" + question
+            String[] expertiseSplitted = fullExpertiseStr.split("_");
+            String expertiseGroupName = expertiseSplitted[0];
+            String expertise = expertiseSplitted[1];
 
-                ExpertiseGroup expertiseGroup = new ExpertiseGroup(expertiseGroupName, new ArrayList<Expertise>());
-                if(expertiseGroups.contains(expertiseGroup)){
-                    expertiseGroup = expertiseGroups.get(expertiseGroups.indexOf(expertiseGroup));
-                }else{
-                    expertiseGroups.add(expertiseGroup);
-                }
-
-                expertiseGroup.getExpertise().add(new Expertise(expertise, ExpertiseLevel.valueOf(expertiseLevel.toUpperCase()),
-                    Double.valueOf(expertiseYears)));
+            ExpertiseGroup expertiseGroup = new ExpertiseGroup(expertiseGroupName, new ArrayList<Expertise>());
+            if (expertiseGroups.contains(expertiseGroup)) {
+                expertiseGroup = expertiseGroups.get(expertiseGroups.indexOf(expertiseGroup));
+            } else {
+                expertiseGroups.add(expertiseGroup);
             }
+
+            expertiseGroup.getExpertise().add(new Expertise(expertise, expertiseLevel, expertiseYears));
 
         }
 
@@ -85,41 +73,6 @@ public class QuestionnaireController extends Controller {
         return ok(result);
     }
 
-    private static List<ExpertiseGroup> mergeQuestionnaries(Set<Questionnarie> questionnaries) {
-        List<ExpertiseGroup> mergedExpertiseGroups = new ArrayList<>();
-        for (Questionnarie questionnarie : questionnaries) {
-            for (ExpertiseGroup expertiseGroup : questionnarie.getExpertiseGroups()) {
-                if (mergedExpertiseGroups.contains(expertiseGroup)) {
-                    mergeExpertiseGroups(expertiseGroup, mergedExpertiseGroups);
-                } else {
-                    mergedExpertiseGroups.add(expertiseGroup);
-                }
-            }
-        }
-        return mergedExpertiseGroups;
-    }
-
-    private static void mergeExpertiseGroups(ExpertiseGroup newExpertiseGroup, List<ExpertiseGroup> expertiseGroups) {
-        int questionGroupIndex = expertiseGroups.indexOf(newExpertiseGroup);
-        ExpertiseGroup currentExpertiseGroup = expertiseGroups.get(questionGroupIndex);
-        List<Expertise> newExpertises = new ArrayList<>();
-        for (Expertise newExpertise : newExpertiseGroup.getExpertise()) {
-            if (!currentExpertiseGroup.getExpertise().contains(newExpertise)) {
-                newExpertises.add(newExpertise);
-            }
-        }
-        currentExpertiseGroup.getExpertise().addAll(newExpertises);
-    }
-
-    private static Set<Questionnarie> getRelevantQuestionnaries(String groups) {
-        String[] groupsArr = groups.split(",");
-        Set<Questionnarie> questionnaries = new HashSet<>();
-        for (String group : groupsArr) {
-            Questionnarie questionnarie = questionnarieDao.get(Group.valueOf(group));
-            questionnaries.add(questionnarie);
-        }
-        return questionnaries;
-    }
 
     private static Questionnarie parseQuestionnaireJson() {
         JsonNode json = request().body().asJson();
@@ -150,7 +103,7 @@ public class QuestionnaireController extends Controller {
         return ok(result);
     }
 
-    public static void setUp(CandidateDao candidateDao, QuestionnarieDao questionnarieDao){
+    public static void setUp(CandidateDao candidateDao, QuestionnarieDao questionnarieDao) {
         QuestionnaireController.candidateDao = candidateDao;
         QuestionnaireController.questionnarieDao = questionnarieDao;
     }

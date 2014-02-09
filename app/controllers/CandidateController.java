@@ -95,4 +95,15 @@ public class CandidateController extends Controller {
         }
         return new Candidate(phone, lastName, firstName, email, groups);
     }
+
+    // Groups - comma separated questionnarie groups
+    public static Result getQuestionnarie(String candidateEmail) {
+        Candidate candidate = candidateDao.get(candidateEmail);
+        if (candidate == null) {
+            return notFound();
+        }
+
+        return ok(candidate_questionnarie.render(candidate, candidate.getExpertises()));
+    }
+
 }
