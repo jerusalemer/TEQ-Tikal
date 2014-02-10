@@ -19,7 +19,8 @@ object ApplicationBuild extends Build {
     "commons-lang" % "commons-lang" % "2.6",
     "org.springframework.data" % "spring-data-mongodb" % "1.3.3.RELEASE",
     "org.mongodb" % "mongo-java-driver" % "2.11.3",
-    "cglib" % "cglib" % "3.1"
+    "cglib" % "cglib" % "3.1",
+    "commons-io" % "commons-io" % "2.4"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

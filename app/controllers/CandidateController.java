@@ -9,6 +9,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import service.CsvExporter;
 import views.html.candidate_questionnarie;
 import views.html.candidates;
 
@@ -22,6 +23,7 @@ import java.util.Set;
 public class CandidateController extends Controller {
 
     private static CandidateDao candidateDao;
+    private static CsvExporter csvExporter;
 
     public static Result getAll(){
         List<Candidate> allCandidates = candidateDao.getAll();
@@ -60,8 +62,9 @@ public class CandidateController extends Controller {
         return null;
     }
 
-    public static void setUp(CandidateDao candidateDao){
+    public static void setUp(CandidateDao candidateDao, CsvExporter csvExporter){
         CandidateController.candidateDao = candidateDao;
+        CandidateController.csvExporter = csvExporter;
     }
 
     /**
@@ -104,6 +107,22 @@ public class CandidateController extends Controller {
         }
 
         return ok(candidate_questionnarie.render(candidate, candidate.getExpertises()));
+    }
+
+    public static Result exportToCSV(String candidateEmail) {
+        Candidate candidate = candidateDao.get(candidateEmail);
+        if (candidate == null) {
+            return notFound();
+        }
+
+        response().setContentType("text/csv");
+        Controller.response().setHeader("Content-Disposition",
+                "attachment;filename=" + candidate.getFirstName() + "_" + candidate.getLastName() + ".fods");
+
+        String candidateExcel = csvExporter.toExcel(candidate);
+
+        return ok(candidateExcel);
+
     }
 
 }
