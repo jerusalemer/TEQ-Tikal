@@ -1,6 +1,8 @@
 package dao;
 
 import model.Candidate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,17 +16,18 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class CandidateDao {
 
-    private Map<String, Candidate> candidateMap = new ConcurrentHashMap<>();
+    @Autowired
+    private MongoOperations mongoOperations;
 
     public void save(Candidate candidate){
-        candidateMap.put(candidate.getEmail(), candidate);
+        mongoOperations.save(candidate);
     }
 
     public List<Candidate> getAll(){
-        return new ArrayList<>(candidateMap.values());
+        return mongoOperations.findAll(Candidate.class);
     }
 
     public Candidate get(String email){
-        return candidateMap.get(email);
+        return mongoOperations.findById(email, Candidate.class);
     }
 }

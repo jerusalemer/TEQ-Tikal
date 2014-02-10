@@ -17,6 +17,9 @@ public class Expertise {
         this.yearsOfExperience = yearsOfExperience;
     }
 
+    //for database orm
+    public Expertise() { }
+
     public Expertise(String name) {
         this.name = name;
     }

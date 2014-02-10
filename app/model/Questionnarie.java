@@ -1,13 +1,17 @@
 package model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
 /**
  * Created by Art on 1/27/14.
  */
+@Document(collection = "questionnaire-templates")
 public class Questionnarie {
 
-    private int id;
+    @Id
     private Group group;
     private List<ExpertiseGroup> expertiseGroups;
 
@@ -16,6 +20,8 @@ public class Questionnarie {
         this.expertiseGroups = expertiseGroups;
     }
 
+    public Questionnarie() {}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -23,28 +29,14 @@ public class Questionnarie {
 
         Questionnarie that = (Questionnarie) o;
 
-        if (id != that.id) return false;
         if (group != that.group) return false;
-        if (expertiseGroups != null ? !expertiseGroups.equals(that.expertiseGroups) : that.expertiseGroups != null)
-            return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (group != null ? group.hashCode() : 0);
-        result = 31 * result + (expertiseGroups != null ? expertiseGroups.hashCode() : 0);
-        return result;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        return group.hashCode();
     }
 
     public Group getGroup() {
@@ -55,12 +47,5 @@ public class Questionnarie {
         return expertiseGroups;
     }
 
-    @Override
-    public String toString() {
-        return "Questionnarie{" +
-                "id=" + id +
-                ", group=" + group +
-                ", expertiseGroups=" + expertiseGroups +
-                '}';
-    }
+
 }

@@ -68,9 +68,7 @@ public class QuestionnaireController extends Controller {
 
         candidateDao.save(candidate);
 
-        ObjectNode result = (ObjectNode) Json.toJson(candidate);
-
-        return ok(result);
+        return ok("Questionnaire successfully saved");
     }
 
 

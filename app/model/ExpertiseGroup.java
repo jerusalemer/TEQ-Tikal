@@ -15,6 +15,8 @@ public class ExpertiseGroup {
         this.expertise = expertise;
     }
 
+    public ExpertiseGroup() {}
+
     public String getName() {
         return name;
     }

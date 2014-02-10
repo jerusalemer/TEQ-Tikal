@@ -6,6 +6,7 @@ import model.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.mongodb.core.MongoOperations;
 import play.Application;
 import play.GlobalSettings;
 import play.api.Play;
@@ -34,12 +35,13 @@ public class Global extends GlobalSettings {
         CandidateController candidateController = Play.global(Play.current()).getControllerInstance(CandidateController.class);
         candidateController.setUp(candidateDao);
 
-        //todo for test only, remove when tests are done
-        setupMockObjects(questionnarieDao, ctx.getBean(CandidateFactory.class));
+
+        //setupMockObjects(questionnarieDao, ctx.getBean(CandidateFactory.class));
 
         super.onStart(app);
     }
 
+    //todo for test only, remove when tests are done
     private void setupMockObjects(QuestionnarieDao questionnarieDao, CandidateFactory candidateFactory) {
 
         List<ExpertiseGroup> almExpertiseGroups = new ArrayList<>();
