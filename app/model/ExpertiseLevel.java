@@ -5,6 +5,18 @@ package model;
  */
 public enum ExpertiseLevel {
 
-    BASIC,DEVELOPER, EXPERT
+    BASIC("Basic"),DEVELOPER("Developer"), EXPERT("Expert");
+
+    private String displayName;
+
+    private ExpertiseLevel(String displayName){
+        this.displayName = displayName;
+    }
+
+    public String prettyPrint(){
+        return displayName;
+    }
+
+
 
 }

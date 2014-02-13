@@ -1,12 +1,10 @@
 package model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Art on 1/21/14.
@@ -18,24 +16,22 @@ public class Candidate {
     private String email;
     private String firstName;
     private String lastName;
-    private String phone;
     private Date registrationDate;
 
     private Set<Group> groups;
-    private List<ExpertiseGroup> expertises;
 
-    public Candidate(String phone, String lastName, String firstName, String email, Set<Group> groups) {
-        this.phone = phone;
+    private SortedMap<String, ? extends SortedMap<String, List<Expertise>>> expertises;
+
+    public Candidate(String lastName, String firstName, String email, Set<Group> groups) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.groups = groups;
         this.registrationDate = new Date();
-        this.expertises = new ArrayList<>();
+        expertises = new TreeMap<>();
     }
 
-    public String getPhone() {
-        return phone;
+    public Candidate() {
     }
 
     public String getLastName() {
@@ -54,15 +50,15 @@ public class Candidate {
         return groups;
     }
 
-    public List<ExpertiseGroup> getExpertises() {
+    public SortedMap<String, ? extends SortedMap<String, List<Expertise>>> getExpertises() {
         return expertises;
-    }
-
-    public void setExpertises(List<ExpertiseGroup> expertises) {
-        this.expertises = expertises;
     }
 
     public Date getRegistrationDate() {
         return registrationDate;
+    }
+
+    public void setExpertises(SortedMap<String, ? extends SortedMap<String, List<Expertise>>> expertises) {
+        this.expertises = expertises;
     }
 }

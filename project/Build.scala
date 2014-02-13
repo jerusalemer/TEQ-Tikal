@@ -20,7 +20,9 @@ object ApplicationBuild extends Build {
     "org.springframework.data" % "spring-data-mongodb" % "1.3.3.RELEASE",
     "org.mongodb" % "mongo-java-driver" % "2.11.3",
     "cglib" % "cglib" % "3.1",
-    "commons-io" % "commons-io" % "2.4"
+    "commons-io" % "commons-io" % "2.4",
+    "dom4j" % "dom4j" % "1.6.1",
+    "jaxen" % "jaxen" % "1.1.6"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

@@ -4,20 +4,22 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
 
 /**
  * Created by Art on 1/27/14.
  */
-@Document(collection = "questionnaire-templates")
+@Document(collection = "questionnaire_templates")
 public class Questionnarie {
 
     @Id
     private Group group;
-    private List<ExpertiseGroup> expertiseGroups;
+    private SortedMap<String, ? extends SortedMap<String, List<Expertise>>> expertises;
 
-    public Questionnarie(Group group, List<ExpertiseGroup> expertiseGroups) {
+    public Questionnarie(Group group, SortedMap<String, ? extends SortedMap<String, List<Expertise>>> expertises) {
         this.group = group;
-        this.expertiseGroups = expertiseGroups;
+        this.expertises = expertises;
     }
 
     public Questionnarie() {}
@@ -43,9 +45,7 @@ public class Questionnarie {
         return group;
     }
 
-    public List<ExpertiseGroup> getExpertiseGroups() {
-        return expertiseGroups;
+    public SortedMap<String, ? extends SortedMap<String, List<Expertise>>> getExpertises() {
+        return expertises;
     }
-
-
 }

@@ -20,13 +20,13 @@ public class CandidateFactory {
     @Autowired
     private CandidateDao candidateDao;
 
-    public Candidate createCandidate(String phone, String firstName, String lastName, String email, Set<Group> groups) {
-        Candidate candidate = new Candidate(phone, lastName, firstName, email, groups);
+    public Candidate createCandidate(String firstName, String lastName, String email, Set<Group> groups) {
+        Candidate candidate = new Candidate(lastName, firstName, email, groups);
 
         Set<Questionnarie> questionnaries = getRelevantQuestionnaries(groups);
-        List<ExpertiseGroup> expertiseGroups = mergeQuestionnaries(questionnaries);
+        TreeMap<String, TreeMap<String, List<Expertise>>> expertises = mergeQuestionnaries(questionnaries);
 
-        candidate.setExpertises(expertiseGroups);
+        candidate.setExpertises(expertises);
 
         candidateDao.save(candidate);
 
@@ -44,29 +44,31 @@ public class CandidateFactory {
     }
 
 
-    private List<ExpertiseGroup> mergeQuestionnaries(Set<Questionnarie> questionnaries) {
-        List<ExpertiseGroup> mergedExpertiseGroups = new ArrayList<>();
+    private TreeMap<String, TreeMap<String, List<Expertise>>> mergeQuestionnaries(Set<Questionnarie> questionnaries) {
+        TreeMap<String, TreeMap<String, List<Expertise>>> mergedExpertises = new TreeMap<>();
         for (Questionnarie questionnarie : questionnaries) {
-            for (ExpertiseGroup expertiseGroup : questionnarie.getExpertiseGroups()) {
-                if (mergedExpertiseGroups.contains(expertiseGroup)) {
-                    mergeExpertiseGroups(expertiseGroup, mergedExpertiseGroups);
-                } else {
-                    mergedExpertiseGroups.add(expertiseGroup);
+
+            for (Map.Entry<String, ? extends SortedMap<String, List<Expertise>>> groupEntry : questionnarie.getExpertises().entrySet()) {
+                for (Map.Entry<String, List<Expertise>> subGroup : groupEntry.getValue().entrySet()) {
+                    for (Expertise expertise : subGroup.getValue() ) {
+                        if(!mergedExpertises.containsKey(groupEntry.getKey())){
+                            mergedExpertises.put(groupEntry.getKey(), new TreeMap<String, List<Expertise>>());
+                        }
+
+                        if(!mergedExpertises.get(groupEntry.getKey()).containsKey(subGroup.getKey())){
+                            mergedExpertises.get(groupEntry.getKey()).put(subGroup.getKey(), new ArrayList<Expertise>());
+                        }
+
+                        List<Expertise> expertises = mergedExpertises.get(groupEntry.getKey()).get(subGroup.getKey());
+                        if(!expertises.contains(expertise)){
+                            expertises.add(expertise);
+                        }
+
+                    }
                 }
             }
         }
-        return mergedExpertiseGroups;
+        return mergedExpertises;
     }
 
-    private void mergeExpertiseGroups(ExpertiseGroup newExpertiseGroup, List<ExpertiseGroup> expertiseGroups) {
-        int questionGroupIndex = expertiseGroups.indexOf(newExpertiseGroup);
-        ExpertiseGroup currentExpertiseGroup = expertiseGroups.get(questionGroupIndex);
-        List<Expertise> newExpertises = new ArrayList<>();
-        for (Expertise newExpertise : newExpertiseGroup.getExpertise()) {
-            if (!currentExpertiseGroup.getExpertise().contains(newExpertise)) {
-                newExpertises.add(newExpertise);
-            }
-        }
-        currentExpertiseGroup.getExpertise().addAll(newExpertises);
-    }
 }

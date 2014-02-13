@@ -37,7 +37,7 @@ public class CandidateController extends Controller {
             return notFound();
         }
 
-        return ok(candidate_questionnarie.render(candidate, candidate.getExpertises()));
+        return ok(candidate_questionnarie.render(candidate));
     }
 
     static Candidate save(Candidate candidate) {
@@ -91,12 +91,11 @@ public class CandidateController extends Controller {
         String firstName = json.findPath("firstName").getTextValue();
         String lastName = json.findPath("lastName").getTextValue();
         String email = json.findPath("email").getTextValue();
-        String phone = json.findPath("phone").getTextValue();
         Set<Group> groups = new HashSet<>();
         for (JsonNode group : json.findPath("groups")) {
             groups.add(Group.valueOf(group.getTextValue()));
         }
-        return new Candidate(phone, lastName, firstName, email, groups);
+        return new Candidate(lastName, firstName, email, groups);
     }
 
     // Groups - comma separated questionnarie groups
@@ -106,7 +105,7 @@ public class CandidateController extends Controller {
             return notFound();
         }
 
-        return ok(candidate_questionnarie.render(candidate, candidate.getExpertises()));
+        return ok(candidate_questionnarie.render(candidate));
     }
 
     public static Result exportToCSV(String candidateEmail) {

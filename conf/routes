@@ -8,7 +8,6 @@ GET         /assets/*file                controllers.Assets.at(path="/public", f
 GET         /                            controllers.CandidateController.getAll()
 POST        /candidate                   controllers.CandidateController.registerCandidate()
 GET         /candidate                   controllers.CandidateController.getAll()
-GET         /questionnarie/:group        controllers.QuestionnaireController.getQuestionnaire(group: String)
 GET         /candidate/:email            controllers.CandidateController.getQuestionnarie(email: String)
 GET         /candidate/excel/:email        controllers.CandidateController.exportToCSV(email: String)
 POST        /questionnaire               controllers.QuestionnaireController.fillQuestionnarie()

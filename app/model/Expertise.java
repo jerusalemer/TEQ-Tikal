@@ -36,4 +36,28 @@ public class Expertise {
         return yearsOfExperience;
     }
 
+    public void setLevel(ExpertiseLevel level) {
+        this.level = level;
+    }
+
+    public void setYearsOfExperience(Double yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Expertise expertise = (Expertise) o;
+
+        if (!name.equals(expertise.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

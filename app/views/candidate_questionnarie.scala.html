@@ -1,4 +1,5 @@
-@(candidate: model.Candidate, expertiseGroups: List[model.ExpertiseGroup])
+@(candidate: model.Candidate)
+@import java.util
 
 <!DOCTYPE html>
 
@@ -153,6 +154,9 @@
         </style>
     </head>
     <body>
+
+
+
         @helper.form(action = routes.QuestionnaireController.fillQuestionnarie){
 
             <input type="hidden" name="candidateEmail" value="@candidate.getEmail()"/>
@@ -160,7 +164,7 @@
 
             <div class="header">
                 <fieldset>
-                    <h1>Tikal Experience Questionnaire, @candidate.getFirstName() @candidate.getLastName()</h1>
+                    <h1>Tikal Experience Questionnaire, @candidate.getFirstName @candidate.getLastName</h1>
                     <legend></legend>
                 </fieldset>
             </div>
@@ -176,37 +180,42 @@
                         Years of experience
                     </label>
                 </div>
+                @for((groupName, subGroups) <- candidate.getExpertises()){
+                    @for((subGroupName, expertises) <- subGroups){
+                        <fieldset>
+                            <legend></legend>
+                            <p>
+                                <h4>@subGroupName</h4>
+                            </p>
 
-                @for(expertiseGroup <- expertiseGroups) {
-                    <fieldset>
-                    <legend></legend>
-                    <p>
-                        <h4>@expertiseGroup.getName()</h4>
-                    </p>
+                            @for(expertise <- expertises){
+                                @defining(( groupName + "_" + subGroupName + "_" + expertise.getName)) { expertiseName =>
+                                    <p> <label class="field2" >@expertise.getName</label>
+                                        <input type="hidden" name="expertise" value="@expertiseName"/>
+                                        <select id="@((expertiseName + "_level").replace(' ', '_'))"
+                                        name="@(expertiseName + "_level")">
+                                            <option value="none"></option>
+                                            <option value="BASIC">Basic</option>
+                                            <option value="DEVELOPER">Developer</option>
+                                            <option value="EXPERT">Expert</option>
+                                        </select>
+                                        <input class="number" min="0.5" step="0.5" type="number" value="@expertise.getYearsOfExperience"  name="@(expertiseName + "_years")"/>
+                                    </p>
 
-                    @for(expertise <- expertiseGroup.getExpertise()){
-                        <p> <label class="field2" >@expertise.getName()</label>
-                            <input type="hidden" name="expertise" value="@(expertiseGroup.getName() + "_" + expertise.getName)"/>
+                                    <script>
+                                    $('select#@((expertiseName + "_level").replace(' ', '_')) option[value="@expertise.getLevel"]').attr("selected", "selected");
+                                    </script>
+                                }
 
-                             <select id="@((expertiseGroup.getName() + "_" + expertise.getName + "_level").replace(' ', '_'))"
-                                name="@(expertiseGroup.getName() + "_" + expertise.getName + "_level")">
-                                <option value="none"></option>
-                                <option value="BASIC">Basic</option>
-                                <option value="DEVELOPER">Developer</option>
-                                <option value="EXPERT">Expert</option>
-                            </select>
-                            <input class="number" min="0.5" step="0.5" type="number" value="@expertise.getYearsOfExperience"  name="@(expertiseGroup.getName() + "_" + expertise.getName + "_years")"/>
-                        </p>
+                            }
 
-                        <script>
-                            $('select#@((expertiseGroup.getName() + "_" + expertise.getName + "_level").replace(' ', '_')) option[value="@expertise.getLevel"]').attr("selected", "selected");
-                        </script>
+
+
+                        </fieldset>
+                        <br/>
 
                     }
-                    </fieldset>
-                    <br/>
                 }
-
 
             </div>
             <button type="submit">Save</button>
