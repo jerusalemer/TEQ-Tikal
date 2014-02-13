@@ -9,12 +9,14 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import service.CandidateFactory;
 import service.CsvExporter;
 import views.html.candidate_questionnarie;
 import views.html.candidates;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -24,6 +26,7 @@ public class CandidateController extends Controller {
 
     private static CandidateDao candidateDao;
     private static CsvExporter csvExporter;
+    private static CandidateFactory candidateFactory;
 
     public static Result getAll(){
         List<Candidate> allCandidates = candidateDao.getAll();
@@ -45,57 +48,43 @@ public class CandidateController extends Controller {
         return candidate;
     }
 
-    static String validate(Candidate candidate) {
-        if (candidate.getGroups().size() == 0) {
-            return "No candidate groups found";
-        }
-        if (candidate.getEmail() == null || candidate.getEmail().isEmpty()) {
-            return "No email address specified";
-        }
-        if (candidate.getFirstName() == null || candidate.getFirstName().isEmpty()) {
-            return "No first name specified";
-        }
-        if (candidate.getLastName() == null || candidate.getLastName().isEmpty()) {
-            return "No last name specified";
-        }
 
-        return null;
-    }
 
-    public static void setUp(CandidateDao candidateDao, CsvExporter csvExporter){
+    public static void setUp(CandidateDao candidateDao, CsvExporter csvExporter, CandidateFactory candidateFactory){
         CandidateController.candidateDao = candidateDao;
         CandidateController.csvExporter = csvExporter;
+        CandidateController.candidateFactory = candidateFactory;
     }
 
     /**
      * Candidate JSON example:
      * {"email":"michael.owen@gmail.com","firstName":"michael","lastName":"owen","phone":"052-123456","groups":["JAVASCRIPT","JAVA"]}
      */
-    @BodyParser.Of(BodyParser.Json.class)
     public static Result registerCandidate() {
-        Candidate candidate = createCandidate();
-        String validationError = CandidateController.validate(candidate);
-        if (validationError == null) {
-            candidate = CandidateController.save(candidate);
-            ObjectNode result = (ObjectNode) Json.toJson(candidate);
-            return ok(result);
-        } else {
-            return badRequest(validationError);
+        try{
+            createCandidate();
+            return ok(candidates.render(candidateDao.getAll()));
+        }catch (IllegalArgumentException ex){
+            return badRequest(ex.getMessage());
         }
-
     }
 
-    private static Candidate createCandidate() {
-        JsonNode json = request().body().asJson();
+    private static void createCandidate() {
+        Map<String,String[]> requestParams = request().body().asFormUrlEncoded();
+        String fullName = requestParams.get("full_name")[0];
+        String email = requestParams.get("email")[0];
+        String[] groupsStr = requestParams.get("group");
 
-        String firstName = json.findPath("firstName").getTextValue();
-        String lastName = json.findPath("lastName").getTextValue();
-        String email = json.findPath("email").getTextValue();
+        String firstName = fullName.split(" ")[0];
+        String lastName = fullName.split(" ")[1];
+
         Set<Group> groups = new HashSet<>();
-        for (JsonNode group : json.findPath("groups")) {
-            groups.add(Group.valueOf(group.getTextValue()));
+        for (String group : groupsStr) {
+            groups.add(Group.valueOf(group));
         }
-        return new Candidate(lastName, firstName, email, groups);
+
+        candidateFactory.createCandidate(firstName, lastName, email, groups);
+
     }
 
     // Groups - comma separated questionnarie groups

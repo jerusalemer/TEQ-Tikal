@@ -23,6 +23,8 @@ public class CandidateFactory {
     public Candidate createCandidate(String firstName, String lastName, String email, Set<Group> groups) {
         Candidate candidate = new Candidate(lastName, firstName, email, groups);
 
+        validate(candidate);
+
         Set<Questionnarie> questionnaries = getRelevantQuestionnaries(groups);
         TreeMap<String, TreeMap<String, List<Expertise>>> expertises = mergeQuestionnaries(questionnaries);
 
@@ -41,6 +43,23 @@ public class CandidateFactory {
             questionnaries.add(questionnarie);
         }
         return questionnaries;
+    }
+
+    private static String validate(Candidate candidate) {
+        if (candidate.getGroups().size() == 0) {
+            throw new IllegalArgumentException("No candidate groups found");
+        }
+        if (candidate.getEmail() == null || candidate.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("No email address specified");
+        }
+        if (candidate.getFirstName() == null || candidate.getFirstName().isEmpty()) {
+            throw new IllegalArgumentException("No first name specified");
+        }
+        if (candidate.getLastName() == null || candidate.getLastName().isEmpty()) {
+            throw new IllegalArgumentException("No last name specified");
+        }
+
+        return null;
     }
 
 

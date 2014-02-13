@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
     <head>
         <script type="text/javascript" src="@routes.Assets.at("/javascripts/jquery-1.9.0.min.js")"></script>
         <script>
@@ -161,20 +161,26 @@
             <p><h4><b class="Sign" id="sign">+</b>Create Candidate</h4></p>
         </div>
         <div class="collapsible">
-            <form name="createCandidateForm" >
+            @helper.form(action = routes.CandidateController.registerCandidate){
                 <fieldset>
                     <div >
-                            <!-- <legend></legend>-->
-                        <p><label class="field" >Full Name &nbsp </label><input type="text" id="FirstName" name="FirstName"/></p>
+                        <p><label class="field" >Full Name &nbsp </label><input type="text"  name="full_name"/></p>
                         <p><label class="field" >Email &nbsp</label><input type="email" id="email" name="email"/></p>
                         <p> <label class="field" >Groups &nbsp</label></p>
-                        <input type="checkbox" name="Java" value="Java">Java
-                        <input type="checkbox" name="ALM" value="ALM">ALM
-                        <input class="add" type="submit" name="add" value="Add">
+                        <input type="checkbox" name="group" value="JAVA"/>Java
+                        <input type="checkbox" name="group" value="ALM"/>ALM
+                        <input type="checkbox" name="group" value="DOTNET"/>.Net
+                        <input type="checkbox" name="group" value="JAVASCRIPT"/>Javascript
+                        <input type="checkbox" name="group" value="RUBY"/>Ruby
+                        <input type="checkbox" name="group" value="FLEX"/>Flex
+
+                        <br/>
+
+                        <button type="submit">Create</button>
                     </div>
 
                 </fieldset>
-            </form>
+            }
         </div>
 
         <br/>

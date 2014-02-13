@@ -27,6 +27,8 @@ public class QuestionnarieDao {
     }
 
     public Questionnarie get(Group group){
-        return mongoOperations.findById(group, Questionnarie.class);
+        Questionnarie questionnarie = mongoOperations.findById(group, Questionnarie.class);
+        DaoUtils.fixMongoDbBug(questionnarie.getExpertises());
+        return questionnarie;
     }
 }

@@ -29,15 +29,16 @@ public class Global extends GlobalSettings {
 
         CandidateDao candidateDao = ctx.getBean(CandidateDao.class);
         QuestionnarieDao questionnarieDao = ctx.getBean(QuestionnarieDao.class);
+        CandidateFactory candidateFactory = ctx.getBean(CandidateFactory.class);
 
         QuestionnaireController questionnaireController = Play.global(Play.current()).getControllerInstance(QuestionnaireController.class);
         questionnaireController.setUp(candidateDao, questionnarieDao);
         CandidateController candidateController = Play.global(Play.current()).getControllerInstance(CandidateController.class);
         CsvExporter setCsvExporter = ctx.getBean(CsvExporter.class);
-        candidateController.setUp(candidateDao, setCsvExporter);
+        candidateController.setUp(candidateDao, setCsvExporter, candidateFactory);
 
 
-        //setupMockObjects(questionnarieDao, ctx.getBean(CandidateFactory.class));
+        //setupMockObjects(questionnarieDao, );
 
         super.onStart(app);
     }
