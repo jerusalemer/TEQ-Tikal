@@ -5,15 +5,18 @@ import model.Candidate;
 import model.Group;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
+import play.Logger;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import service.CandidateFactory;
 import service.CsvExporter;
+import service.MailSender;
 import views.html.candidate_questionnarie;
 import views.html.candidates;
 
+import javax.mail.MessagingException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +30,7 @@ public class CandidateController extends Controller {
     private static CandidateDao candidateDao;
     private static CsvExporter csvExporter;
     private static CandidateFactory candidateFactory;
+    private static MailSender mailSender;
 
     public static Result getAll(){
         List<Candidate> allCandidates = candidateDao.getAll();
@@ -50,10 +54,11 @@ public class CandidateController extends Controller {
 
 
 
-    public static void setUp(CandidateDao candidateDao, CsvExporter csvExporter, CandidateFactory candidateFactory){
+    public static void setUp(CandidateDao candidateDao, CsvExporter csvExporter, CandidateFactory candidateFactory, MailSender mailSender){
         CandidateController.candidateDao = candidateDao;
         CandidateController.csvExporter = csvExporter;
         CandidateController.candidateFactory = candidateFactory;
+        CandidateController.mailSender = mailSender;
     }
 
     /**
@@ -95,6 +100,23 @@ public class CandidateController extends Controller {
         }
 
         return ok(candidate_questionnarie.render(candidate));
+    }
+
+    public static Result sendEmail(String candidateEmail){
+        Candidate candidate = candidateDao.get(candidateEmail);
+        if (candidate == null) {
+            return notFound();
+        }
+
+        try{
+            mailSender.sendTeqMail(candidate);
+            return ok("Email to: " + candidateEmail + " successfully sent");
+        }catch (Exception e) {
+            Logger.error("Error sending email", e);
+            return internalServerError(e.getMessage());
+        }
+
+
     }
 
     public static Result exportToCSV(String candidateEmail) {

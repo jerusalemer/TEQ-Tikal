@@ -24,6 +24,11 @@
                 var selectedCandidateEmail = $('input[name=candidate_email]:checked', '#candidates_tbl').val();
                 window.location = document.getElementById(selectedCandidateEmail + "_excel").href
             }
+
+            function sendMail(){
+                var selectedCandidateEmail = $('input[name=candidate_email]:checked', '#candidates_tbl').val();
+                window.location = document.getElementById(selectedCandidateEmail + "_email").href
+            }
         </script>
         <style>
         .collapsibleHeader{
@@ -184,7 +189,7 @@
         </div>
 
         <br/>
-        <button class="sendEmail">Send Email</button>
+        <button class="sendEmail" onclick="sendMail()">Send Email</button>
         <button onclick="exportToExcel()">Export to Excel</button>
         <button>Delete</button>
         <br/>
@@ -200,7 +205,9 @@
                     <td><input type="radio" name="candidate_email" value="@candidate.getEmail"  ></td>
                     <td><a href="@{routes.CandidateController.getQuestionnarie(candidate.getEmail)}">@candidate.getFirstName @candidate.getLastName</a></td>
                     <td>@candidate.getEmail</td>
-                    <td>@candidate.getGroups <a href="@{routes.CandidateController.exportToCSV(candidate.getEmail)}" id="@(candidate.getEmail)_excel"></a></td>
+                    <td>@candidate.getGroups <a href="@{routes.CandidateController.exportToCSV(candidate.getEmail)}" id="@(candidate.getEmail)_excel"></a>
+                        <a href="@{routes.CandidateController.sendEmail(candidate.getEmail)}" id="@(candidate.getEmail)_email"></a>
+                    </td>
 
                 </tr>
 

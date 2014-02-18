@@ -11,6 +11,7 @@ import play.GlobalSettings;
 import play.api.Play;
 import service.CandidateFactory;
 import service.CsvExporter;
+import service.MailSender;
 import spring.SpringConfig;
 
 import java.util.*;
@@ -30,12 +31,13 @@ public class Global extends GlobalSettings {
         CandidateDao candidateDao = ctx.getBean(CandidateDao.class);
         QuestionnarieDao questionnarieDao = ctx.getBean(QuestionnarieDao.class);
         CandidateFactory candidateFactory = ctx.getBean(CandidateFactory.class);
+        MailSender mailSender = ctx.getBean(MailSender.class);
 
         QuestionnaireController questionnaireController = Play.global(Play.current()).getControllerInstance(QuestionnaireController.class);
         questionnaireController.setUp(candidateDao, questionnarieDao);
         CandidateController candidateController = Play.global(Play.current()).getControllerInstance(CandidateController.class);
         CsvExporter setCsvExporter = ctx.getBean(CsvExporter.class);
-        candidateController.setUp(candidateDao, setCsvExporter, candidateFactory);
+        candidateController.setUp(candidateDao, setCsvExporter, candidateFactory,mailSender);
 
 
         //setupMockObjects(questionnarieDao, );

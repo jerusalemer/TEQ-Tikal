@@ -22,7 +22,8 @@ object ApplicationBuild extends Build {
     "cglib" % "cglib" % "3.1",
     "commons-io" % "commons-io" % "2.4",
     "dom4j" % "dom4j" % "1.6.1",
-    "jaxen" % "jaxen" % "1.1.6"
+    "jaxen" % "jaxen" % "1.1.6",
+    "javax.mail" % "mail" % "1.4.7"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
