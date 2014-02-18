@@ -61,17 +61,24 @@ public class CandidateController extends Controller {
         CandidateController.mailSender = mailSender;
     }
 
-    /**
-     * Candidate JSON example:
-     * {"email":"michael.owen@gmail.com","firstName":"michael","lastName":"owen","phone":"052-123456","groups":["JAVASCRIPT","JAVA"]}
-     */
     public static Result registerCandidate() {
         try{
             createCandidate();
-            return ok(candidates.render(candidateDao.getAll()));
+            return getAll();
         }catch (IllegalArgumentException ex){
             return badRequest(ex.getMessage());
         }
+    }
+
+    public static Result deleteCandidate(String candidateEmail){
+        Candidate candidate = candidateDao.get(candidateEmail);
+        if (candidate == null) {
+            return notFound();
+        }
+
+        candidateDao.delete(candidate);
+
+        return getAll();
     }
 
     private static void createCandidate() {
@@ -115,8 +122,6 @@ public class CandidateController extends Controller {
             Logger.error("Error sending email", e);
             return internalServerError(e.getMessage());
         }
-
-
     }
 
     public static Result exportToCSV(String candidateEmail) {

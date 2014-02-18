@@ -36,5 +36,9 @@ public class CandidateDao {
         return candidate;
     }
 
+    public void delete(Candidate candidate){
+        mongoOperations.remove(candidate);
+    }
+
 
 }
