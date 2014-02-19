@@ -1,0 +1,114 @@
+{
+    "group": "JAVA",
+    "expertises": {
+        "General": {
+            "Java Language": [
+                {"name": "Developing Java Classes"},
+                {"name": "Using threads"}
+            ],
+            "Database": [
+                {"name": "SQL"},
+                {"name": "Designing Database Schema"},
+                {"name": "Creating ERD"},
+                {"name": "Writing SQL Statements"},
+                {"name": "Implementing Data Access Classes"},
+                {"name": "Optimization and Tuning  (Please Specify Database)"}
+            ],
+            "BigData": [
+                {"name": "NoSQL Database (MongoDB, CouchDB, Cassandra, Redis, BigTable, HBase)"},
+                {"name": "MapReduce (Hadoop, Hive)"},
+                {"name": "Servers (EC2, GAE)"},
+                {"name": "Processing (Solr/Lucene, ElasticSearch)"},
+                {"name": "Vert.X"}
+            ]
+
+        },
+        "Serverside Frameworks & Libraries": {
+            "Spring & Hibernate" :[
+                {"name": "Hibernate"},
+                {"name": "Spring"},
+                {"name": "Spring Data"}
+            ],
+            "EJB3 & JPA" :[
+                {"name": "EJB / EJB 3"},
+                {"name": "JPA"},
+                {"name": "JDBC"}
+            ],
+            "TypeSafe" :[
+                {"name": "Scala"},
+                {"name": "Akka"},
+                {"name": "Play-Framework"}
+            ]
+        },
+        "Clientside Frameworks & Libraries": {
+            "Java Web Frameworks" : [
+                {"name": "JSP & TagLib"},
+                {"name": "MyFaces"},
+                {"name": "Struts/Struts2"},
+                {"name": "GWT"},
+                {"name": "Wicket"},
+                {"name": "Grails"}
+            ],
+            "Javascript/Ajax" :[
+                {"name": "Ajax"},
+                {"name": "HTML&JavaScript"},
+                {"name": "Dojo"},
+                {"name": "ExtJS"},
+                {"name": "Prototype"},
+                {"name": "AngularJS"},
+                {"name": "EmberJS"},
+                {"name": "BackboneJS"},
+                {"name": "NodeJS"},
+                {"name": "jQuery"}
+            ]
+        },
+        "Tools & Platforms" : {
+            "Linux" :[
+                {"name": "Linux OS - desktop (end user) / server (administration) experience"},
+                {"name": "Linux OS - power user - worked over 2 years only  on  a linux desktop ( no windows!)"},
+                {"name": "Writing scripts - shell / bash / cshell etc"},
+                {"name": "Clustering and High Availability"},
+                {"name": "Install and Configure 3rd parties application - various daemon configuration /  administration"}
+            ],
+            "MySQL" :[
+                {"name": "MySQL"},
+                {"name": "Clustering"},
+                {"name": "Performance"},
+                {"name": "Tuning"}
+            ],
+            "JBoss&Tomcat" :[
+                {"name": "JBoss"},
+                {"name": "Tomcat"},
+                {"name": "Clustering"},
+                {"name": "Performance"},
+                {"name": "Tuning"}
+            ],
+            "CM/CI/CD" : [
+                {"name": "Bugzilla"},
+                {"name": "Subversion"},
+                {"name": "Git"},
+                {"name": "Luntbuild"},
+                {"name": "Docker"},
+                {"name": "LogCollector (LogStash, Flume, Fluntd etc)"},
+                {"name": "Vargrant"},
+                {"name": "Cheff"},
+                {"name": "Puppet"},
+                {"name": "Hudson"}
+            ],
+            "Ant&Maven" : [
+                {"name": "ANT"},
+                {"name": "Maven2"},
+                {"name": "Make"},
+                {"name": "Shell Script"}
+            ],
+            "PaaS and Cloud Providers" : [
+                {"name": "AWS"},
+                {"name": "Heuroko"},
+                {"name": "Cludfoundry"},
+                {"name": "RackSpace"},
+                {"name": "Open Stack"}
+            ]
+        }
+
+    }
+}

@@ -3,8 +3,11 @@ package dao;
 import model.Candidate;
 import model.Expertise;
 import model.ExpertiseLevel;
+import model.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -41,4 +44,9 @@ public class CandidateDao {
     }
 
 
+    public Collection<Candidate> find(Group group) {
+        Query query = new Query();
+        //query.addCriteria(Criteria.where("groups").);
+        return mongoOperations.find(query, Candidate.class);
+    }
 }

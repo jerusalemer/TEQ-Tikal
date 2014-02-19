@@ -1,0 +1,93 @@
+{
+    "group": "DOTNET",
+    "expertises": {
+        "General": {
+            ".NET Framework & C# Language": [
+                {"name": ".Net/C# Core, OOP"},
+                {"name": "Reflection, Attribute-Based Programming"},
+                {"name": "Object Lifetime (GC/Finalize/IDisposable)"},
+                {"name": "LINQ (IEnumerable<T>, IQueryable<T>, LINQ to XML), Lambda"},
+                {"name": "Callback Interfaces, Delegates, Anonymus Delegates and Events"}
+            ],
+            "Database": [
+                {"name": "SQL"},
+                {"name": "Designing Database Schema"},
+                {"name": "Creating ERD"},
+                {"name": "Writing SQL Statements"},
+                {"name": "Implementing Data Access Classes"},
+                {"name": "Optimization and Tuning  (Please Specify Database)"},
+                {"name": "ADO.NET"},
+                {"name": "Entity Framework (Self Tracking Entities, POCO, Code First, Database First, EntityObject)"},
+                {"name": "NHibernate"}
+            ],
+            "ASP.NET": [
+                {"name": "Application Pipeline, HttpModules, HttpHandlers"},
+                {"name": "ASP.NET Web Forms"},
+                {"name": "ASP.NET MVC"},
+                {"name": "ASP.NET Web Pages"},
+                {"name": "Razor view engine"}
+            ],
+            "Web Client" :[
+                {"name": "HTML/CSS"},
+                {"name": "Javascript"},
+                {"name": "jQuery"},
+                {"name": "Dojo"},
+                {"name": "ExtJS"},
+                {"name": "Ajax"},
+                {"name": "Comet, Long Polling"},
+                {"name": "Web Sockets"}
+            ],
+            "Desktop Client" :[
+                {"name": "Win Forms"},
+                {"name": "WPF"},
+                {"name": "Silverlight"},
+                {"name": "XAML DataBinding & Validation"},
+                {"name": "XAML Style & Templating"},
+                {"name": "Prism or CAB"}
+            ],
+            "Communication" :[
+                {"name": "TCP/IP (Sockets)"},
+                {"name": "SOAP, WSDL"},
+                {"name": "REST Service"},
+                {"name": "WPF"},
+                {"name": "WCF (Bindings, Authentication, Authorization, Behaviours, Validation, IIS)"}
+            ],
+            "Server Side" :[
+                {"name": "Win32 (P\\Invoke, User32)"},
+                {"name": "LDAP, Active Directory (ACL\\ACE)"},
+                {"name": "MSMQ \\ RabbitMQ \\ Other persistant queue technology"},
+                {"name": "Windows Services"},
+                {"name": "Multi-threading (ThreadPool, Monitor, WaitHandle, Task Lib, Asynchronous Patters etc.)"},
+                {"name": "Design Patterns (DI, IOC, Repository, Observer, Factory)"},
+                {"name": "WF (WorkFlow Foundation)"}
+            ],
+            "Misc" :[
+                {"name": "XML/XSL/XSD/XPath"},
+                {"name": "NoSQL Database (MongoDB, CouchDB, Cassandra, Redis, BigTable, HBase)"},
+                {"name": "Unit testing"},
+                {"name": "Log4Net"},
+                {"name": "Enterprise Library (Unity, Log, Exception, Validation)"},
+                {"name": "Castle Project or StructureMap"}
+            ]
+        },
+        "Tools & Platforms" : {
+            "Linux" :[
+                {"name": "Linux OS - desktop (end user) / server (administration) experience"},
+                {"name": "Linux OS - power user - worked over 2 years only  on  a linux desktop ( no windows!)"},
+                {"name": "Writing scripts - shell / bash / cshell etc"},
+                {"name": "Clustering and High Availability"},
+                {"name": "Install and Configure 3rd parties application - various daemon configuration /  administration"}
+            ],
+            "ALM and tools" : [
+                {"name": "TFS (Gated, Policies)"},
+                {"name": "Subversion"},
+                {"name": "GIT"},
+                {"name": "Mercurial"},
+                {"name": "MSI Packaging Tools (Orca)"},
+                {"name": "Automated software builds"},
+                {"name": "Shell Script or PowerShell"},
+                {"name": "WinDbg"}
+            ]
+        }
+    }
+}

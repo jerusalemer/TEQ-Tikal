@@ -21,7 +21,7 @@ import javax.mail.internet.MimeMessage;
 
 
 /**
- * Created by tema on 2/18/14.
+ * Created by Art on 2/18/14.
  */
 @Component
 public class MailSender {

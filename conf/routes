@@ -13,3 +13,5 @@ GET         /candidate/excel/:email            controllers.CandidateController.e
 GET         /candidate/send-mail/:email        controllers.CandidateController.sendEmail(email: String)
 GET         /candidate/delete/:email           controllers.CandidateController.deleteCandidate(email: String)
 POST        /questionnaire                     controllers.QuestionnaireController.fillQuestionnarie()
+GET         /questionnaire/:group              controllers.QuestionnaireController.findQuestionnarie(group: String)
+GET         /questionnaire-reload              controllers.QuestionnaireController.reloadQuestionnaries()

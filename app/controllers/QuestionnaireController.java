@@ -10,6 +10,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import service.QuestionnarieLoader;
 
 import java.util.*;
 
@@ -20,6 +21,7 @@ public class QuestionnaireController extends Controller {
 
     private static CandidateDao candidateDao;
     private static QuestionnarieDao questionnarieDao;
+    private static QuestionnarieLoader questionnarieLoader;
 
     public static Result fillQuestionnarie() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
@@ -54,8 +56,27 @@ public class QuestionnaireController extends Controller {
         return ok("Questionnaire successfully saved");
     }
 
-    public static void setUp(CandidateDao candidateDao, QuestionnarieDao questionnarieDao) {
+    public static Result findQuestionnarie(String group){
+        Questionnarie questionnarie = questionnarieDao.get(Group.valueOf(group));
+
+        ObjectNode result = (ObjectNode) Json.toJson(questionnarie);
+        return ok(result);
+
+    }
+
+    public static Result reloadQuestionnaries(){
+        try{
+            questionnarieLoader.reloadQuestionnaries();
+            return redirect("/");
+        }catch (Exception ex){
+            return internalServerError("failed to reload questionnaries " + ex.getMessage());
+        }
+
+    }
+
+    public static void setUp(CandidateDao candidateDao, QuestionnarieDao questionnarieDao, QuestionnarieLoader questionnarieLoader) {
         QuestionnaireController.candidateDao = candidateDao;
         QuestionnaireController.questionnarieDao = questionnarieDao;
+        QuestionnaireController.questionnarieLoader = questionnarieLoader;
     }
 }

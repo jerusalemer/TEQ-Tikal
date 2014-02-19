@@ -192,7 +192,7 @@
                                 @defining(( groupName + "_" + subGroupName + "_" + expertise.getName)) { expertiseName =>
                                     <p> <label class="field2" >@expertise.getName</label>
                                         <input type="hidden" name="expertise" value="@expertiseName"/>
-                                        <select id="@((expertiseName + "_level").replace(' ', '_'))"
+                                        <select id="@((expertiseName + "_level").hashCode())"
                                         name="@(expertiseName + "_level")">
                                             <option value="none"></option>
                                             <option value="BASIC">Basic</option>
@@ -203,7 +203,7 @@
                                     </p>
 
                                     <script>
-                                    $('select#@((expertiseName + "_level").replace(' ', '_')) option[value="@expertise.getLevel"]').attr("selected", "selected");
+                                    $('select#@((expertiseName + "_level").hashCode()) option[value="@expertise.getLevel"]').attr("selected", "selected");
                                     </script>
                                 }
 
