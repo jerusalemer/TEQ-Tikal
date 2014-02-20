@@ -1,0 +1,107 @@
+{
+    "group": "PYTHON",
+    "expertises": {
+        "General": {
+            "Python": [
+                {"name": "OOD/OOP"},
+                {"name": "Multi-threading"},
+                {"name": "Iterator & Generators"},
+                {"name": "Regular Expressions"},
+                {"name": "String parsing"},
+				{"name": "Working with files"},
+				{"name": "Working with Databases"},
+				{"name": "Interfacing with C"},
+                {"name": "Interfacing with Java"},
+                {"name": "Pickling"},
+                {"name": "Mixins"},
+                {"name": "Decorators"},
+				{"name": "Functional programming"},
+				{"name": "Python GUI"},
+				{"name": "Unit testing (doctest, unittest)"},
+                {"name": "Packaging"},
+                {"name": "Remoting (Pyro, RPyC)"},
+                {"name": "Dynamic functions"},
+				{"name": "Metaclasses"},
+				{"name": "Contribution to an open source python project"}				
+            ],
+            "Database": [
+                {"name": "SQL"},
+                {"name": "Designing Database Schema"},
+                {"name": "Creating ERD"},
+                {"name": "Writing SQL Statements"},
+                {"name": "Implementing Data Access Classes"},
+                {"name": "Optimization and Tuning  (Please Specify Database)"}
+            ],
+			"BigData": [
+                {"name": "NoSQL Database (MongoDB, CouchDB, Cassandra, Redis, BigTable, HBase)"},
+                {"name": "MapReduce (Hadoop, Hive)"},
+                {"name": "Servers (EC2, GAE)"},
+                {"name": "Processing (Solr/Lucene, ElasticSearch)"}
+            ]
+        },
+		"Serverside Frameworks and Libraries" : {
+
+				"HTML, XML & SOAP" :[
+					{"name": "BeautifulSoup"},
+					{"name": "ZSI"},
+					{"name": "suds"},
+					{"name": "SOAPpy"}
+				],
+				"ORM" : [
+					{"name": "Django"},
+					{"name": "Pylon"},
+					{"name": "SQLAlchemy"}
+				]
+
+        },
+        "Clientside  Frameworks and Libraries" : {
+				"Template Engine" : [
+					{"name": "Django"},
+					{"name": "Jinja"}
+				],
+				"GUI" :[
+					{"name": "PyGTK"},
+					{"name": "wxPython"}
+				],
+				"Javascript/Ajax": [
+					{"name": "Dojo"},
+					{"name": "Jquery"},
+					{"name": "ExtJS"},
+					{"name": "Prototype"},
+					{"name": "HTML&JavaScript"}
+				]
+
+        },
+        "Tools & Platforms" : {
+            "Linux" :[
+                {"name": "Linux OS - desktop (end user) / server (administration) experience"},
+                {"name": "Linux OS - power user - worked over 2 years only  on  a linux desktop ( no windows!)"},
+                {"name": "Writing scripts - shell / bash / cshell etc"},
+                {"name": "Clustering and High Availability"},
+                {"name": "Install and Configure 3rd parties application - various daemon configuration /  administration"}
+            ],
+
+			"MySQL" :[
+                {"name": "Clustering"},
+                {"name": "Performance"},
+                {"name": "Tuning"}
+            ],
+			"Web Server" :[
+                {"name": "Django/Pylon/TurboGears/Zope"},
+                {"name": "Apache/Ngynx w/ mod_python/mod_wsgi"},
+                {"name": "Memcached"}
+            ],
+			"CM" :[
+                {"name": "Bugzilla"},                
+                {"name": "Git"},
+				{"name": "Subversion"},
+                {"name": "Luntbuild"},
+                {"name": "Hudson"}
+            ],
+			"Eclipse IDE" :[
+                {"name": "PyDev"},
+                {"name": "DLTP (Dynamic Languages)"}
+            ]       
+			}
+    }
+}

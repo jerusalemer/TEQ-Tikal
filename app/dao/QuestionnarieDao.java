@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
+import play.Logger;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -28,6 +29,10 @@ public class QuestionnarieDao {
 
     public Questionnarie get(Group group){
         Questionnarie questionnarie = mongoOperations.findById(group, Questionnarie.class);
+        if( questionnarie == null){
+            Logger.error("Non existing questionnaire for group:  " + group);
+            throw new IllegalStateException("Non existing questionnaire for group:  " + group);
+        }
         DaoUtils.fixMongoDbBug(questionnarie.getExpertises());
         return questionnarie;
     }

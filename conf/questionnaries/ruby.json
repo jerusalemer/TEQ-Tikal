@@ -1,0 +1,74 @@
+{
+    "group": "RUBY",
+    "expertises": {
+        "Ruby": {
+            "Ruby": [
+                {"name": "Unit testing using Rspec"},
+                {"name": "Integration testing using Capybara"},
+                {"name": "Creating Gems"},
+                {"name": "Profiler"},
+				{"name": "Interfacing with C"},
+                {"name": "Regular Expressions"}
+            ],
+            "Rails & Web": [
+                {"name": "Routing"},
+                {"name": "Assets Pipeline"},
+				{"name": "Slim view engine"},
+                {"name": "Haml view engine"},
+                {"name": "SCSS"},
+				{"name": "Coffeescript"},
+                {"name": "Rack App"},
+                {"name": "Sinatra App"},
+				{"name": "Contributing to Open Source Projects"}
+            ],
+			"Deployment & Infrastructure": [
+                {"name": "Heroku"},
+                {"name": "Amazon EC2"},
+                {"name": "Rackspace"},
+                {"name": "GIT"},
+				{"name": "New Relic"}
+            ],
+			"Programming Languages": [
+                {"name": "C/C++"},
+                {"name": "Java"},
+                {"name": "C#"},
+                {"name": "Perl"},
+                {"name": "PHP"},
+				{"name": "Python"}
+            ],
+			"Database": [
+                {"name": "SQL"},
+                {"name": "Designing Database Schema"},
+                {"name": "Creating ERD"},
+                {"name": "Writing SQL Statements"},
+                {"name": "Optimization and Tuning  (Please Specify Database)"}
+            ],
+			"Cloud": [
+                {"name": "Memcached"},
+                {"name": "MongoDB"},
+                {"name": "CouchDB"},
+				{"name": "Cassandra"},
+                {"name": "Redis"},
+                {"name": "Processing (Solr/Lucene, ElasticSearch, Sphinx)"}
+            ]
+        },
+        "Web" : {
+            "Javascript" :[
+                {"name": "Node.js"},
+                {"name": "OOP JS"},
+                {"name": "Jquery"},
+                {"name": "ExtJS"},
+                {"name": "Prototype"},
+				{"name": "Ember"},
+                {"name": "Backbone"},
+                {"name": "Underscore"}
+            ],
+			"Web Development" :[
+                {"name": "HTML5"},
+                {"name": "CSS3"},
+				{"name": "Ajax"},
+                {"name": "Web Sockets"}
+            ]
+        }
+    }
+}

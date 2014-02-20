@@ -5,5 +5,5 @@ package model;
  */
 public enum Group {
 
-    JAVA, ALM, DOTNET, JAVASCRIPT, RUBY, FLEX
+    JAVA, ALM, DOTNET, JAVASCRIPT, RUBY, FLEX, MOBILE, PYTHON
 }

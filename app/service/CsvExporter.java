@@ -39,6 +39,8 @@ public class CsvExporter {
         excelWithExpertises = excelWithExpertises.replace("{date}", dateStr);
         excelWithExpertises = excelWithExpertises.replace("{candidate_group}", prettyPrintGroups(candidate));
 
+        Logger.info("Successfully generated excel to:  " + candidate.getEmail());
+
         return excelWithExpertises;
 
     }

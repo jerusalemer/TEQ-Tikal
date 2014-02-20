@@ -40,6 +40,8 @@ public class MailSender {
 
         send(email, password, candidate.getEmail(), subject, body);
 
+        Logger.info("Successfully sent mail to " + candidate.getEmail());
+
     }
 
     /**

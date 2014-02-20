@@ -6,7 +6,7 @@ import model.ExpertiseLevel;
 import java.util.*;
 
 /**
- * Created by tema on 2/13/14.
+ * Created by Art on 2/13/14.
  */
 public class DaoUtils {
 

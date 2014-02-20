@@ -5,6 +5,7 @@ import dao.QuestionnarieDao;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import play.Logger;
 
 import java.util.*;
 
@@ -31,6 +32,8 @@ public class CandidateFactory {
         candidate.setExpertises(expertises);
 
         candidateDao.save(candidate);
+
+        Logger.info("Successfully created candidate:  " + candidate.getEmail());
 
         return candidate;
 

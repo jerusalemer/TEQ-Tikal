@@ -38,7 +38,7 @@ public class QuestionnaireController extends Controller {
             Double expertiseYears = StringUtils.isEmpty(expertiseYearsStr) ? null : Double.valueOf(expertiseYearsStr);
 
             //question = questionGroup.getName() + "_" + question
-            String[] expertiseSplitted = fullExpertiseStr.split("_");
+            String[] expertiseSplitted = fullExpertiseStr.split("\\|\\|");
             String categoryName = expertiseSplitted[0];
             String subCategoryName = expertiseSplitted[1];
             String expertiseName = expertiseSplitted[2];

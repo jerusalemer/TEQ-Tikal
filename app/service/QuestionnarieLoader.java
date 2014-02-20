@@ -40,13 +40,18 @@ public class QuestionnarieLoader {
                 questionnarieDao.save(questionnarie);
 
                 updateExistingCandidates(questionnarie);
+                Logger.info("Successfully loaded " + group.name() + " questionnaire");
             }
         }
 
     }
 
+    /**
+     * todo go over existing candidates and update
+     * @param questionnarie
+     */
     private void updateExistingCandidates(Questionnarie questionnarie) {
-        Collection<Candidate> candidates = candidateDao.find(questionnarie.getGroup());
+        //Collection<Candidate> candidates = candidateDao.find(questionnarie.getGroup());
     }
 
     private Questionnarie loadQuestionnarie(InputStream inputStream, Group group) throws IOException {

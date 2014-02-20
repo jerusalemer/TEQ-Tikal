@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+import play.Logger;
 
 import java.util.*;
 
@@ -26,10 +27,13 @@ public class CandidateDao {
     }
 
     public List<Candidate> getAll(){
+        Logger.debug("Candidate get all start ");
         List<Candidate> candidateList = mongoOperations.findAll(Candidate.class);
+        Logger.debug("Candidate get mongo find all end ");
         for (Candidate candidate : candidateList) {
             DaoUtils.fixMongoDbBug(candidate.getExpertises());
         }
+        Logger.debug("Candidate get all end ");
         return candidateList;
     }
 

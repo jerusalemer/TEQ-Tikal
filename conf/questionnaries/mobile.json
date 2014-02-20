@@ -1,0 +1,75 @@
+{
+    "group": "MOBILE",
+    "expertises": {
+        "General": {
+            "Programming Languages": [
+                {"name": "C/C++"},
+                {"name": "Java"},
+                {"name": "Javascript"},
+                {"name": "Perl"},
+                {"name": "PHP"},
+				{"name": "Ruby"},
+				{"name": "Python"}
+            ],
+            "Database": [
+                {"name": "SQL"},
+                {"name": "Designing Database Schema"},
+                {"name": "Creating ERD"},
+                {"name": "Writing SQL Statements"},
+                {"name": "Implementing Data Access Classes"},
+                {"name": "Optimization and Tuning  (Please Specify Database)"}
+            ]
+        },
+        "Mobile Platform" : {
+            "Mobile OSs" :[
+                {"name": "iOS (IPhone, IPad)"},
+                {"name": "Android"},
+                {"name": "Blackberry"},
+                {"name": "Symbian"}
+            ],
+			"iOS Development" :[
+                {"name": "Objective C"},
+                {"name": "HTML and Javascript / iPhone"},
+                {"name": "iOS SDK using Xcode"},
+                {"name": "App Store Submission Process"}
+            ],
+			"Android Development" :[
+                {"name": "Java"},
+				{"name": "NDK Development"},
+                {"name": "XML (UI Design)"},
+                {"name": "Gradle (Android Build System)"},
+				{"name": "HTML and Javascript"},
+                {"name": "Android SDK using Eclipse"},
+                {"name": "Market Place Submission Process"}
+            ],
+            "Libraries and Frameworks" : [
+                {"name": "Adobe Air for Mobile platforms"},
+                {"name": "OpenGL"},
+                {"name": "Unity3D"},
+                {"name": "Cocos2D"},
+                {"name": "JQuery Mobile)"},
+				{"name": "Sencha Touch"}
+            ]
+        },
+		"Tools & Platforms" : {
+            "Desktop OSs  - power user - worked over 2 years" :[
+                {"name": "Linux"},
+                {"name": "Mac OSX"}
+            ],
+            "Local Databases" : [
+                {"name": "Coredata"},
+                {"name": "Sqlite"},
+                {"name": "Android Content Providers"}
+            ],
+			"ALM" :[
+                {"name": "Git"},
+                {"name": "Subversion"},
+                {"name": "Hudson"},
+                {"name": "ANT"},
+                {"name": "Maven2"},
+				{"name": "Make"},
+                {"name": "Shell Script"}
+            ]
+        }
+    }
+}

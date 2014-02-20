@@ -189,7 +189,7 @@
                             </p>
 
                             @for(expertise <- expertises){
-                                @defining(( groupName + "_" + subGroupName + "_" + expertise.getName)) { expertiseName =>
+                                @defining(( groupName + "||" + subGroupName + "||" + expertise.getName)) { expertiseName =>
                                     <p> <label class="field2" >@expertise.getName</label>
                                         <input type="hidden" name="expertise" value="@expertiseName"/>
                                         <select id="@((expertiseName + "_level").hashCode())"
