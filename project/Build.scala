@@ -14,7 +14,7 @@ object ApplicationBuild extends Build {
     javaEbean,
     "org.codehaus.jackson" % "jackson-mapper-asl" % "1.9.13",
     "org.springframework" % "spring-core" % "4.0.0.RELEASE",
-    "org.springframework" % "spring-asm" % "3.1.4.RELEASE",
+    "org.springframework" % "spring-asm" % "4.0.0.RELEASE",
     "org.springframework" % "spring-context" % "4.0.0.RELEASE",
     "commons-lang" % "commons-lang" % "2.6",
     "org.springframework.data" % "spring-data-mongodb" % "1.3.3.RELEASE",
