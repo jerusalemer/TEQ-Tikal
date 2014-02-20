@@ -34,7 +34,12 @@ public class MailSender {
         String subject = Play.application().configuration().getString("email.subject");
         String body = Play.application().configuration().getString("email.text");
 
-        String appBaseAddress = Play.application().configuration().getString("app.base.address");
+        String appBaseAddress;
+        if(Play.isProd()){
+            appBaseAddress = Play.application().configuration().getString("app.base.prod.address");
+        }else {
+            appBaseAddress = Play.application().configuration().getString("app.base.address");
+        }
 
         body = body.replace("{questionnaire}", appBaseAddress + "/candidate/" + URLEncoder.encode(candidate.getEmail()));
 
