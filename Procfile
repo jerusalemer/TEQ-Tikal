@@ -1,1 +1,1 @@
-web: target/start -Dhttp.port=80 ${JAVA_OPTS} -Xmx160m
+web: target/start -Dhttp.port=7777 ${JAVA_OPTS} -Xmx160m
