@@ -27,7 +27,7 @@ public class SpringConfig {
         Mongo mongo;
         String dbName;
         UserCredentials credentials;
-        if (Play.isDev()){
+        if (Play.isProd()){
             String prodHost = Play.application().configuration().getString("prod.db.mongo.host");
             Integer prodPort = Play.application().configuration().getInt("prod.db.mongo.port");
             mongo = new MongoClient(prodHost, prodPort);
