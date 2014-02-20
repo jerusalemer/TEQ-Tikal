@@ -1,1 +1,1 @@
-web: target/start -Dhttp.port=80 -Dhttp.address=teq.herokuapp.com ${JAVA_OPTS} -Xmx160m
+web: target/start -Dhttp.port=80 ${JAVA_OPTS} -Xmx160m
