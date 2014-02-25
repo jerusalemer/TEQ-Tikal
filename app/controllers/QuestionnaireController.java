@@ -67,7 +67,7 @@ public class QuestionnaireController extends Controller {
     public static Result reloadQuestionnaries(){
         try{
             questionnarieLoader.reloadQuestionnaries();
-            return redirect("/");
+            return redirect("/candidates");
         }catch (Exception ex){
             return internalServerError("failed to reload questionnaries " + ex.getMessage());
         }

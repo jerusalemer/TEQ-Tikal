@@ -3,10 +3,7 @@ package controllers;
 import dao.CandidateDao;
 import model.Candidate;
 import model.Group;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.node.ObjectNode;
 import play.Logger;
-import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -16,7 +13,6 @@ import service.MailSender;
 import views.html.candidate_questionnarie;
 import views.html.candidates;
 
-import javax.mail.MessagingException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
