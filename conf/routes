@@ -10,11 +10,14 @@ POST        /login                             controllers.LoginController.doLog
 
 GET         /candidates                        controllers.CandidateController.getAll()
 POST        /candidate                         controllers.CandidateController.registerCandidate()
-GET         /candidate                         controllers.CandidateController.getAll()
 GET         /candidate/:email                  controllers.CandidateController.getQuestionnarie(email: String)
 GET         /candidate/excel/:email            controllers.CandidateController.exportToCSV(email: String)
 GET         /candidate/send-mail/:email        controllers.CandidateController.sendEmail(email: String)
 GET         /candidate/delete/:email           controllers.CandidateController.deleteCandidate(email: String)
+
+#find candidated according to specific search params
+GET         /candidate/find/:email                  controllers.CandidateController.findCandidate(email: String)
+
 POST        /questionnaire                     controllers.QuestionnaireController.fillQuestionnarie()
 GET         /questionnaire/:group              controllers.QuestionnaireController.findQuestionnarie(group: String)
 GET         /questionnaire-reload              controllers.QuestionnaireController.reloadQuestionnaries()

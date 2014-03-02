@@ -24,9 +24,9 @@ public class LoginController extends Controller {
         String username = values.get("username")[0];
         String password = values.get("password")[0];
 
-        if(!"root".equalsIgnoreCase(username)
-                || !"123".equals(password)){
-            return unauthorized("Wrong password");
+        if(!"tikal".equalsIgnoreCase(username)
+                || !"tikal".equals(password)){
+            return redirect("/");
         }
         session("username", username);
         return redirect("/candidates");

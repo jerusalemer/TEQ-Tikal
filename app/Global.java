@@ -43,8 +43,8 @@ public class Global extends GlobalSettings {
         CsvExporter setCsvExporter = ctx.getBean(CsvExporter.class);
         candidateController.setUp(candidateDao, setCsvExporter, candidateFactory,mailSender);
 
-
-        //setupMockObjects(questionnarieDao, );
+        //setup mock
+        setupMockObjects(questionnarieDao, candidateFactory);
 
         super.onStart(app);
     }

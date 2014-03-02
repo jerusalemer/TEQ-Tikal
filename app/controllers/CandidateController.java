@@ -13,10 +13,7 @@ import service.MailSender;
 import views.html.candidate_questionnarie;
 import views.html.candidates;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Art on 2/5/14.
@@ -29,7 +26,7 @@ public class CandidateController extends Controller {
     private static MailSender mailSender;
 
     public static Result getAll(){
-        List<Candidate> allCandidates = candidateDao.getAll();
+        Collection<Candidate> allCandidates = candidateDao.getAll();
         return ok(candidates.render(allCandidates));
     }
 
