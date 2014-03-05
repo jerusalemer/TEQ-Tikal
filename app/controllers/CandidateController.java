@@ -3,7 +3,9 @@ package controllers;
 import dao.CandidateDao;
 import model.Candidate;
 import model.Group;
+import org.codehaus.jackson.node.ArrayNode;
 import play.Logger;
+import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -26,13 +28,17 @@ public class CandidateController extends Controller {
     private static MailSender mailSender;
 
     public static Result getAll(){
-        Collection<Candidate> allCandidates = candidateDao.getAll();
+        final Iterable<Candidate> candidateIterable = candidateDao.getAll();
+        Collection<Candidate> allCandidates = new ArrayList<>();
+        for (Candidate candidate : candidateIterable) {
+            allCandidates.add(candidate);
+        }
         return ok(candidates.render(allCandidates));
     }
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result findCandidate(String email) {
-        Candidate candidate = candidateDao.get(email);
+        Candidate candidate = candidateDao.getByEmail(email);
         if (candidate == null) {
             return notFound();
         }
@@ -40,12 +46,38 @@ public class CandidateController extends Controller {
         return ok(candidate_questionnarie.render(candidate));
     }
 
-    static Candidate save(Candidate candidate) {
-        candidateDao.save(candidate);
-        return candidate;
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result findCandidateByName(String name) {
+        final Collection<Candidate> candidates = candidateDao.findByNameOrLastName(name);
+        if (candidates.isEmpty()) {
+            return notFound();
+        }
+        //transform into json
+        ArrayNode result = (ArrayNode) Json.toJson(candidates);
+        return ok(result);
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result findCandidateByGroup(String group) {
+        final Collection<Candidate> candidates = candidateDao.findByGroup(Group.valueOf(group));
+        if (candidates.isEmpty()) {
+            return notFound();
+        }
+        //transform into json
+        ArrayNode result = (ArrayNode) Json.toJson(candidates);
+        return ok(result);
+    }
 
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result findByRecruiter(String recruiter) {
+        final Collection<Candidate> candidates = candidateDao.findByRecruiter(recruiter);
+        if (candidates.isEmpty()) {
+            return notFound();
+        }
+        //transform into json
+        ArrayNode result = (ArrayNode) Json.toJson(candidates);
+        return ok(result);
+    }
 
     public static void setUp(CandidateDao candidateDao, CsvExporter csvExporter, CandidateFactory candidateFactory, MailSender mailSender){
         CandidateController.candidateDao = candidateDao;
@@ -64,7 +96,7 @@ public class CandidateController extends Controller {
     }
 
     public static Result deleteCandidate(String candidateEmail){
-        Candidate candidate = candidateDao.get(candidateEmail);
+        Candidate candidate = candidateDao.getByEmail(candidateEmail);
         if (candidate == null) {
             return notFound();
         }
@@ -78,6 +110,7 @@ public class CandidateController extends Controller {
         Map<String,String[]> requestParams = request().body().asFormUrlEncoded();
         String fullName = requestParams.get("full_name")[0];
         String email = requestParams.get("email")[0];
+        String recruiter = requestParams.get("recruiter")[0];
         String[] groupsStr = requestParams.get("group");
 
         String firstName = fullName.split(" ")[0];
@@ -88,13 +121,13 @@ public class CandidateController extends Controller {
             groups.add(Group.valueOf(group));
         }
 
-        candidateFactory.createCandidate(firstName, lastName, email, groups);
+        candidateFactory.createCandidate(firstName, lastName, email, recruiter, groups);
 
     }
 
     // Groups - comma separated questionnarie groups
     public static Result getQuestionnarie(String candidateEmail) {
-        Candidate candidate = candidateDao.get(candidateEmail);
+        Candidate candidate = candidateDao.getByEmail(candidateEmail);
         if (candidate == null) {
             return notFound();
         }
@@ -103,7 +136,7 @@ public class CandidateController extends Controller {
     }
 
     public static Result sendEmail(String candidateEmail){
-        Candidate candidate = candidateDao.get(candidateEmail);
+        Candidate candidate = candidateDao.getByEmail(candidateEmail);
         if (candidate == null) {
             return notFound();
         }
@@ -118,7 +151,7 @@ public class CandidateController extends Controller {
     }
 
     public static Result exportToCSV(String candidateEmail) {
-        Candidate candidate = candidateDao.get(candidateEmail);
+        Candidate candidate = candidateDao.getByEmail(candidateEmail);
         if (candidate == null) {
             return notFound();
         }

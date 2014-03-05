@@ -3,6 +3,7 @@ package model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.apache.solr.client.solrj.beans.Field;
 
 import java.util.*;
 
@@ -13,25 +14,36 @@ import java.util.*;
 public class Candidate {
 
     @Id
+    @Field("id")
     private String email;
+    @Field("firstName_t")
     private String firstName;
+    @Field("recruiter_t")
+    private String recruiter;
+    @Field("lastName_t")
     private String lastName;
+    @Field("registrationDate_dt")
     private Date registrationDate;
-
+    @Field("groups_txt")
     private Set<Group> groups;
 
+    @Field("experties_txt")
     private SortedMap<String, ? extends SortedMap<String, List<Expertise>>> expertises;
 
-    public Candidate(String lastName, String firstName, String email, Set<Group> groups) {
+    public Candidate(String lastName, String firstName, String email, String recruiter, Set<Group> groups) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
+        this.recruiter = recruiter;
         this.groups = groups;
         this.registrationDate = new Date();
         expertises = new TreeMap<>();
     }
 
-    public Candidate() {
+    public Candidate() {}
+
+    public String getRecruiter() {
+        return recruiter;
     }
 
     public String getLastName() {

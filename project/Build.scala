@@ -23,7 +23,10 @@ object ApplicationBuild extends Build {
     "commons-io" % "commons-io" % "2.4",
     "dom4j" % "dom4j" % "1.6.1",
     "jaxen" % "jaxen" % "1.1.6",
-    "javax.mail" % "mail" % "1.4.7"
+    "javax.mail" % "mail" % "1.4.7",
+    "org.apache.solr" % "solr-solrj" % "4.7.0",
+    "org.springframework.data" % "spring-data-solr" % "1.1.0.RELEASE",
+    "org.springframework" % "spring-test" %  "4.0.2.RELEASE"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

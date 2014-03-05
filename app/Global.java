@@ -3,6 +3,7 @@ import controllers.QuestionnaireController;
 import dao.CandidateDao;
 import dao.QuestionnarieDao;
 import model.*;
+import model.solr.repository.CandidatesRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -31,6 +32,7 @@ public class Global extends GlobalSettings {
 
         ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 
+        CandidatesRepository repository = ctx.getBean(CandidatesRepository.class);
         CandidateDao candidateDao = ctx.getBean(CandidateDao.class);
         QuestionnarieDao questionnarieDao = ctx.getBean(QuestionnarieDao.class);
         CandidateFactory candidateFactory = ctx.getBean(CandidateFactory.class);
@@ -47,6 +49,8 @@ public class Global extends GlobalSettings {
         setupMockObjects(questionnarieDao, candidateFactory);
 
         super.onStart(app);
+        //load all from mongo to solr
+        candidateDao.loadAll(true);
     }
 
 
@@ -68,8 +72,10 @@ public class Global extends GlobalSettings {
         expertises.put("General", generalGroup);
         questionnarieDao.save(new Questionnarie(Group.JAVA, expertises));
 
-        candidateFactory.createCandidate("Steven", "Gerrard", "gerrard@liverpool.com", EnumSet.of(Group.JAVA));
-        candidateFactory.createCandidate("Michael", "Owen", "owen@liverpool.com", EnumSet.of(Group.JAVA, Group.ALM));
+        candidateFactory.createCandidate("Steven", "Gerrard", "gerrard@liverpool.com", "Tzipi", EnumSet.of(Group.JAVA));
+        candidateFactory.createCandidate("Ray", "Charls", "ray_c@liverpool.com", "Tzipi", EnumSet.of(Group.JAVA));
+        candidateFactory.createCandidate("Jhone", "Silever", "silver@liverpool.com", "Shirli", EnumSet.of(Group.JAVA, Group.ALM));
+        candidateFactory.createCandidate("Michael", "Owen", "owen@liverpool.com", "Shirli", EnumSet.of(Group.JAVA, Group.ALM));
     }
 
     @Override

@@ -4,10 +4,8 @@ import dao.CandidateDao;
 import dao.QuestionnarieDao;
 import model.*;
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 import play.libs.Json;
-import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import service.QuestionnarieLoader;
@@ -26,7 +24,7 @@ public class QuestionnaireController extends Controller {
     public static Result fillQuestionnarie() {
         Map<String, String[]> formData = request().body().asFormUrlEncoded();
         String candidateEmail = formData.get("candidateEmail")[0];
-        Candidate candidate = candidateDao.get(candidateEmail);
+        Candidate candidate = candidateDao.getByEmail(candidateEmail);
         if (candidate == null) {
             return notFound();
         }
@@ -58,7 +56,6 @@ public class QuestionnaireController extends Controller {
 
     public static Result findQuestionnarie(String group){
         Questionnarie questionnarie = questionnarieDao.get(Group.valueOf(group));
-
         ObjectNode result = (ObjectNode) Json.toJson(questionnarie);
         return ok(result);
 
