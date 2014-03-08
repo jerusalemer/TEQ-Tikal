@@ -212,6 +212,8 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Groups</th>
+                <th>Recruiter</th>
+                <th>Status</th>
             </tr>
             @for(candidate <- candidates){
                 <tr>
@@ -223,6 +225,8 @@
                         <a href="@{routes.CandidateController.deleteCandidate(candidate.getEmail)}" id="@(candidate.getEmail)_delete"></a>
                         <a href="@{routes.CandidateController.confirmCandidate(candidate.getEmail)}" id="@(candidate.getEmail)_confirm"></a>
                     </td>
+                    <td>@candidate.getRecruiter</td>
+                    <td>@candidate.getDeliveryStatus</td>
 
                 </tr>
 
