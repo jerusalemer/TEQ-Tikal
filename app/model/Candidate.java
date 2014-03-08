@@ -1,9 +1,8 @@
 package model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.*;
 
@@ -14,7 +13,7 @@ import java.util.*;
 public class Candidate {
 
     @Id
-    @Field("id")
+    @Field("email")
     private String email;
     @Field("firstName_t")
     private String firstName;
@@ -26,18 +25,20 @@ public class Candidate {
     private Date registrationDate;
     @Field("groups_txt")
     private Set<Group> groups;
+    @Field("delivery_t")
+    private DeliveryStatus deliveryStatus;
 
-    @Field("experties_txt")
     private SortedMap<String, ? extends SortedMap<String, List<Expertise>>> expertises;
 
-    public Candidate(String lastName, String firstName, String email, String recruiter, Set<Group> groups) {
+    public Candidate(String lastName, String firstName, String email, String recruiter, Set<Group> groups, DeliveryStatus deliveryStatus) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.recruiter = recruiter;
         this.groups = groups;
+        this.deliveryStatus = deliveryStatus;
         this.registrationDate = new Date();
-        expertises = new TreeMap<>();
+        this.expertises = new TreeMap<>();
     }
 
     public Candidate() {}
@@ -72,5 +73,13 @@ public class Candidate {
 
     public void setExpertises(SortedMap<String, ? extends SortedMap<String, List<Expertise>>> expertises) {
         this.expertises = expertises;
+    }
+
+    public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
+    }
+
+    public DeliveryStatus getDeliveryStatus() {
+        return deliveryStatus;
     }
 }

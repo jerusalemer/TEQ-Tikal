@@ -1,6 +1,8 @@
 package dao;
 
+import akka.japi.Option;
 import model.Candidate;
+import model.DeliveryStatus;
 import model.Group;
 import model.solr.repository.CandidatesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,10 @@ public class CandidateDao {
         }
 
         Candidate candidate = mongoOperations.findById(email, Candidate.class);
+        //todo return Guava Option here
+        if(candidate==null)
+            return null;
+
         DaoUtils.fixMongoDbBug(candidate.getExpertises());
         //add candidate directly to cache
         repository.save(candidate);
@@ -80,6 +86,10 @@ public class CandidateDao {
 
     public Collection<Candidate> findByRecruiter(String name) {
         return enrich(repository.findByRecruiter(name));
+    }
+
+    public Collection<Candidate> findByRecruiterAndDeliveryStatus(String name, DeliveryStatus deliveryStatus) {
+        return enrich(repository.findByRecruiterAndDelivery(name, deliveryStatus.name()));
     }
 
     public Collection<Candidate> findByNameOrLastName(String name) {

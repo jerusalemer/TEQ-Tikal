@@ -2,6 +2,7 @@ package controllers;
 
 import dao.CandidateDao;
 import model.Candidate;
+import model.DeliveryStatus;
 import model.Group;
 import org.codehaus.jackson.node.ArrayNode;
 import play.Logger;
@@ -79,6 +80,17 @@ public class CandidateController extends Controller {
         return ok(result);
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result findByRecruiterAndDeliveryStatus(String recruiter,String deliveryStatus) {
+        final Collection<Candidate> candidates = candidateDao.findByRecruiterAndDeliveryStatus(recruiter,DeliveryStatus.valueOf(deliveryStatus));
+        if (candidates.isEmpty()) {
+            return notFound();
+        }
+        //transform into json
+        ArrayNode result = (ArrayNode) Json.toJson(candidates);
+        return ok(result);
+    }
+
     public static void setUp(CandidateDao candidateDao, CsvExporter csvExporter, CandidateFactory candidateFactory, MailSender mailSender){
         CandidateController.candidateDao = candidateDao;
         CandidateController.csvExporter = csvExporter;
@@ -135,6 +147,22 @@ public class CandidateController extends Controller {
         return ok(candidate_questionnarie.render(candidate));
     }
 
+    public static Result confirmCandidate(String candidateEmail){
+        Candidate candidate = candidateDao.getByEmail(candidateEmail);
+        if (candidate == null) {
+            return notFound();
+        }
+
+        if(candidate.getDeliveryStatus()==DeliveryStatus.COMPLETED) {
+            //signal candidate delivered form
+            candidate.setDeliveryStatus(DeliveryStatus.CONFIRMED);
+            //save
+            candidateDao.save(candidate);
+            return ok("candidate: " + candidateEmail + " successfully confirmed");
+        }
+        return internalServerError("candidate didn't post his expertise yet...");
+    }
+
     public static Result sendEmail(String candidateEmail){
         Candidate candidate = candidateDao.getByEmail(candidateEmail);
         if (candidate == null) {
@@ -143,6 +171,10 @@ public class CandidateController extends Controller {
 
         try{
             mailSender.sendTeqMail(candidate);
+            //signal candidate delivered form
+            candidate.setDeliveryStatus(DeliveryStatus.DELIVERED);
+            //save
+            candidateDao.save(candidate);
             return ok("Email to: " + candidateEmail + " successfully sent");
         }catch (Exception e) {
             Logger.error("Error sending email", e);

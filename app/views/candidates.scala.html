@@ -30,6 +30,11 @@
                 window.location = document.getElementById(selectedCandidateEmail + "_email").href
             }
 
+            function confirm(){
+                var selectedCandidateEmail = $('input[name=candidate_email]:checked', '#candidates_tbl').val();
+                window.location = document.getElementById(selectedCandidateEmail + "_confirm").href
+            }
+
             function deleteCandidate(){
                 var selectedCandidateEmail = $('input[name=candidate_email]:checked', '#candidates_tbl').val();
                 window.location = document.getElementById(selectedCandidateEmail + "_delete").href
@@ -158,7 +163,6 @@
         margin-right: 100px;
         }
         .sendEmail {
-
             margin-left: 30px;
         }
 
@@ -197,6 +201,7 @@
 
         <br/>
         <button class="sendEmail" onclick="sendMail()">Send Email</button>
+        <button onclick="confirm()">Confirm Registered</button>
         <button onclick="exportToExcel()">Export to Excel</button>
         <button onclick="deleteCandidate()">Delete</button>
         <a href="@{routes.QuestionnaireController.reloadQuestionnaries()}">Reload Questionnarie Templates</a>
@@ -216,6 +221,7 @@
                     <td>@candidate.getGroups <a href="@{routes.CandidateController.exportToCSV(candidate.getEmail)}" id="@(candidate.getEmail)_excel"></a>
                         <a href="@{routes.CandidateController.sendEmail(candidate.getEmail)}" id="@(candidate.getEmail)_email"></a>
                         <a href="@{routes.CandidateController.deleteCandidate(candidate.getEmail)}" id="@(candidate.getEmail)_delete"></a>
+                        <a href="@{routes.CandidateController.confirmCandidate(candidate.getEmail)}" id="@(candidate.getEmail)_confirm"></a>
                     </td>
 
                 </tr>

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.Candidate;
+import model.DeliveryStatus;
 import model.Group;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +22,10 @@ public interface CandidatesRepository extends SolrCrudRepository<Candidate, Stri
     @Query("recruiter_t:?0")
     List<Candidate> findByRecruiter(String recruiter);
 
-    @Query("id:?0")
+    @Query("recruiter_t:?0 AND delivery_t:?1")
+    List<Candidate> findByRecruiterAndDelivery(String recruiter, String deliveryStatus);
+
+    @Query("email:?0")
     List<Candidate> findByEmail(String email);
 
     @Query("groups_txt:*?0*")

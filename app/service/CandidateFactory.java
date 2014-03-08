@@ -22,7 +22,7 @@ public class CandidateFactory {
     private CandidateDao candidateDao;
 
     public Candidate createCandidate(String firstName, String lastName, String email,String recruiter, Set<Group> groups) {
-        Candidate candidate = new Candidate(lastName, firstName, email, recruiter, groups);
+        Candidate candidate = new Candidate(lastName, firstName, email, recruiter, groups, DeliveryStatus.NOT_DELIVERED);
 
         validate(candidate);
 

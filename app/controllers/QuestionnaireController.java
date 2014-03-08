@@ -48,7 +48,8 @@ public class QuestionnaireController extends Controller {
             expertise.setLevel(expertiseLevel);
             expertise.setYearsOfExperience(expertiseYears);
         }
-
+        //signal candidate delivered form
+        candidate.setDeliveryStatus(DeliveryStatus.COMPLETED);
         candidateDao.save(candidate);
 
         return ok("Questionnaire successfully saved");

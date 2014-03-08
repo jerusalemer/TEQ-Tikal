@@ -1,13 +1,11 @@
 import dao.CandidateDao;
 import dao.QuestionnarieDao;
-import model.Candidate;
-import model.Expertise;
-import model.Group;
-import model.Questionnarie;
+import model.*;
 import model.solr.repository.CandidatesRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.specs2.internal.scalaz.std.iterable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,9 +46,6 @@ public class CandidatesRepositoryTests {
     @Before
     public void before() {
         setupMockObjects(questionnarieDao, candidateFactory);
-        //clean mongo db
-        mongoTemplate.dropCollection(Candidate.class);
-
         //load all to solr
         candidateDao.loadAll(true);
     }
@@ -81,6 +76,30 @@ public class CandidatesRepositoryTests {
         assertTrue(containsBooksWithIds(candidates, "gerrard@liverpool.com","ray_c@liverpool.com"));
     }
 
+    @Test
+    public void findByRecruiterAndDelivery() {
+        List<Candidate> candidates = candidatesRepository.findByRecruiterAndDelivery("Tzipi", DeliveryStatus.NOT_DELIVERED.name());
+
+        // Books with IDs 01, 02, 05, 08 contain "Island" in their name
+        assertEquals(candidates.size(), 2);
+        assertTrue(containsBooksWithIds(candidates, "gerrard@liverpool.com","ray_c@liverpool.com"));
+    }
+
+    @Test
+    public void findByRecruiterAndDeliveryAfterDelivery() {
+        List<Candidate> candidates = candidatesRepository.findByRecruiterAndDelivery("Tzipi", DeliveryStatus.NOT_DELIVERED.name());
+
+        // Books with IDs 01, 02, 05, 08 contain "Island" in their name
+        assertEquals(candidates.size(), 2);
+        assertTrue(containsBooksWithIds(candidates, "gerrard@liverpool.com","ray_c@liverpool.com"));
+        for (Candidate candidate : candidates) {
+            candidate.setDeliveryStatus(DeliveryStatus.DELIVERED);
+            candidateDao.save(candidate);
+        }
+        candidates = candidatesRepository.findByRecruiterAndDelivery("Tzipi", DeliveryStatus.NOT_DELIVERED.name());
+        assertEquals(candidates.size(), 0);
+    }
+
 
     @Test
     public void findByFirstNameOrLastName() {
@@ -99,7 +118,7 @@ public class CandidatesRepositoryTests {
 		// There are 4 books which contain "Island" in their name. However, only the first 2 books are returned because 
 		// a page with size 2 is requested. The next two books could be requested using "new PageRequest(1, 2)" 
 		
-		assertEquals(5, candidatesFacetPage.getNumberOfElements());
+		assertEquals(4, candidatesFacetPage.getNumberOfElements());
 		
 		// 3 of these 4 books are categorized as Adventure
 		// 2 of these 4 books are categorized as Humor

@@ -3,24 +3,26 @@
 # ~~~~
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                                controllers.Assets.at(path="/public", file)
+GET         /assets/*file                                                                 controllers.Assets.at(path="/public", file)
 
-GET         /                                            controllers.LoginController.getLoginPage()
-POST        /login                                       controllers.LoginController.doLogin()
+GET         /                                                                             controllers.LoginController.getLoginPage()
+POST        /login                                                                        controllers.LoginController.doLogin()
 
-GET         /candidates                                  controllers.CandidateController.getAll()
-POST        /candidate                                   controllers.CandidateController.registerCandidate()
-GET         /candidate/:email                            controllers.CandidateController.getQuestionnarie(email: String)
-GET         /candidate/excel/:email                      controllers.CandidateController.exportToCSV(email: String)
-GET         /candidate/send-mail/:email                  controllers.CandidateController.sendEmail(email: String)
-GET         /candidate/delete/:email                     controllers.CandidateController.deleteCandidate(email: String)
+GET         /candidates                                                                   controllers.CandidateController.getAll()
+POST        /candidate                                                                    controllers.CandidateController.registerCandidate()
+GET         /candidate/:email                                                             controllers.CandidateController.getQuestionnarie(email: String)
+GET         /candidate/excel/:email                                                       controllers.CandidateController.exportToCSV(email: String)
+GET         /candidate/send-mail/:email                                                   controllers.CandidateController.sendEmail(email: String)
+GET         /candidate/confirm/:email                                                     controllers.CandidateController.confirmCandidate(email: String)
+GET         /candidate/delete/:email                                                      controllers.CandidateController.deleteCandidate(email: String)
 
 #find candidated according to specific search params
-GET         /candidate/find/:email                       controllers.CandidateController.findCandidate(email: String)
-GET         /candidate/findByName/:name                  controllers.CandidateController.findCandidateByName(name: String)
-GET         /candidate/findByRecruiter/:recruiter        controllers.CandidateController.findByRecruiter(recruiter: String)
-GET         /candidate/findByGroup/:group                controllers.CandidateController.findCandidateByGroup(group: String)
+GET         /candidate/find/:email                                                        controllers.CandidateController.findCandidate(email: String)
+GET         /candidate/findByName/:name                                                   controllers.CandidateController.findCandidateByName(name: String)
+GET         /candidate/findByRecruiter/:recruiter                                         controllers.CandidateController.findByRecruiter(recruiter: String)
+GET         /candidate/findByRecruiterAndDeliveryStatus/:recruiter/:deliveryStatus        controllers.CandidateController.findByRecruiterAndDeliveryStatus(recruiter: String, deliveryStatus : String)
+GET         /candidate/findByGroup/:group                                                 controllers.CandidateController.findCandidateByGroup(group: String)
 
-POST        /questionnaire                               controllers.QuestionnaireController.fillQuestionnarie()
-GET         /questionnaire/:group                        controllers.QuestionnaireController.findQuestionnarie(group: String)
-GET         /questionnaire-reload                        controllers.QuestionnaireController.reloadQuestionnaries()
+POST        /questionnaire                                                                controllers.QuestionnaireController.fillQuestionnarie()
+GET         /questionnaire/:group                                                         controllers.QuestionnaireController.findQuestionnarie(group: String)
+GET         /questionnaire-reload                                                         controllers.QuestionnaireController.reloadQuestionnaries()
