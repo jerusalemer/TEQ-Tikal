@@ -1,0 +1,536 @@
+[{
+    "_id": "gerrard@liverpool.com",
+    "_class": "model.Candidate",
+    "firstName": "Steven",
+    "lastName": "Gerrard",
+    "registrationDate": "12345",
+    "groups": [
+      "JAVA"
+    ],
+    "expertises": {
+      "General": {
+        "Database": [
+          {
+            "name": "Oracle",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "My Sql",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Java Language ": [
+          {
+            "name": "Developing Java Classes",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Using threads",
+            "_class": "model.Expertise"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "owen@liverpool.com",
+    "_class": "model.Candidate",
+    "firstName": "Michael",
+    "lastName": "Owen",
+    "registrationDate": "23345",
+    "groups": [
+      "JAVA",
+      "ALM"
+    ],
+    "expertises": {
+      "General": {
+        "Database": [
+          {
+            "name": "SQL",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Designing Database Schema",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Creating ERD",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Writing SQL Statements",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Oracle",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "My Sql",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Java Language": [
+          {
+            "name": "Developing Java Classes",
+            "_class": "mode l.Expertise"
+          },
+          {
+            "name": "Using threads",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Operating Systems": [
+          {
+            "name": "Linux",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Windows",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Solaris",
+            "_class": "model.Expertise"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "lio@gmail.com",
+    "_class": "model.Candidate",
+    "firstName": "moin",
+    "lastName": "moni",
+    "registrationDate": "123123",
+    "groups": [
+      "RUBY",
+      "MOBILE"
+    ],
+    "expertises": {
+      "General": {
+        "Database": [
+          {
+            "name": "SQL",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Designing Database Schema",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Creating ERD",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Writing SQL Statements",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Implementing Data Access Classes",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Optimization and Tuning  (Please Specify Database)",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Programming Languages": [
+          {
+            "name": "C/C++",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Java",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Javascript",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Perl",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "PHP",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Ruby",
+            "_class": "mode l.Expertise"
+          },
+          {
+            "name": "Python",
+            "_class": "model.Expertise"
+          }
+        ]
+      },
+      "Mobile Platform": {
+        "Android Development": [
+          {
+            "name": "Java",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "NDK Development",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "XML (UI Design)",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Gradle  (Android Build System)",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "HTML and Javascript",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Android SDK using Eclipse",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Market Place Submission Process",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Libraries and Frameworks": [
+          {
+            "name": "Adobe Air for Mobile platforms",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "OpenGL",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Unity3D",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Cocos2D",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "JQuery Mobile)",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Sencha Touch",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Mobile OSs": [
+          {
+            "name": "iOS (IPhone, IPad)",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Android",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Blackberry",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Symbian",
+            "_class": "model.Expertise"
+          }
+        ],
+        "iOS Development": [
+          {
+            "name": "Object ive C",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "HTML and Javascript / iPhone",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "iOS SDK using Xcode",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "App Store Submission Process",
+            "_class": "model.Expertise"
+          }
+        ]
+      },
+      "Ruby": {
+        "Cloud": [
+          {
+            "name": "Memcached",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "MongoDB",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "CouchDB",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Cassandra",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Redis",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Processing (Solr/Lucene, ElasticSearch, Sphinx)",
+            "_class": "mode l.Expertise"
+          }
+        ],
+        "Database": [
+          {
+            "name": "SQL",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Designing Database Schema",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Creating ERD",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Writing SQL Statements",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Optimization a nd Tuning  (Please Specify Database)",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Deployment & Infrastructure": [
+          {
+            "name": "Heroku",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Amazon EC2",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Rackspace",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "GIT",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "New Relic",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Programming Languages": [
+          {
+            "name": "C/C++",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Java",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "C#",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Perl",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "PHP",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Python",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Rails & Web": [
+          {
+            "name": "Routing",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Assets Pipeline",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Slim view engine",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Haml view engine",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "SCSS",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Coffeescript",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Rack App",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Sinatra App",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Contributing to Open Source Projects",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Ruby": [
+          {
+            "name": "Unit testing using Rspec",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Integration testing using Capybara",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Creating Gems",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Profiler",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Interfacing wi th C",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Regular Expressions",
+            "_class": "model.Expertise"
+          }
+        ]
+      },
+      "Tools & Platforms": {
+        "ALM": [
+          {
+            "name": "Git",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Subversion",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Hudson",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "ANT",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Maven2",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Make",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Shell Script",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Desktop OSs  - power user - worked over 2 years": [
+          {
+            "name": "Linux",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Mac OSX",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Local Databases": [
+          {
+            "name": "Coredata",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Sqlite",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Android Content Providers",
+            "_class": "model.Expertise"
+          }
+        ]
+      },
+      "Web": {
+        "Javascript": [
+          {
+            "name": "Node.js",
+            "_class": "mode l.Expertise"
+          },
+          {
+            "name": "OOP JS",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Jquery",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "ExtJS",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Prototype",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Ember",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Backbone",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Underscore",
+            "_class": "model.Expertise"
+          }
+        ],
+        "Web Development": [
+          {
+            "name": "HTML5",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "CSS3",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Ajax",
+            "_class": "model.Expertise"
+          },
+          {
+            "name": "Web Sockets",
+            "_class": "model.Expertise"
+          }
+        ]
+      }
+    }
+  }]

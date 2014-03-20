@@ -1,0 +1,86 @@
+{
+    "group": "JAVASCRIPT",
+    "expertises": {
+        "Javascript (Behavior)": {
+            "Core Javascript": [
+                {"name": "Cross Browser Development"},
+                {"name": "Regular Expressions"},
+                {"name": "Javascript Optimizing For Performance"}
+            ],
+            "OOP Javascript": [
+                {"name": "Creating Custom JS Classes"},
+                {"name": "Binding Events"},
+                {"name": "OOP Javascript"},
+                {"name": "Closures"}
+            ],
+			"Programming Languages": [
+                {"name": "NodeJS"},
+                {"name": "Java"},
+                {"name": "C#"},
+				{"name": "Ruby"},
+				{"name": "Python"}
+            ],
+			"Database": [
+                {"name": "MongoDB"},
+                {"name": "CouchDB"},
+				{"name": "x-SQL (mysql, sql, other)"},
+                {"name": "other:"}
+            ],
+			"Ajax": [
+                {"name": "Cross Browser Ajax"},
+                {"name": "Checking responses status"},
+                {"name": "Retrieving response content"},
+                {"name": "Working with promises"}
+            ],
+			"Javascript Frameworks" :[
+                {"name": "jQuery"},
+                {"name": "AngularJS"},
+                {"name": "Backbone.js"},
+                {"name": "Ember.js"},
+                {"name": "Node.js"},
+                {"name": "Express"},
+                {"name": "Sails.js"},
+                {"name": "Other:"}
+            ],
+			"Javascript Template Engine": [
+                {"name": "Mustache"},
+                {"name": "Ejs"},
+                {"name": "Handlebars"},
+				{"name": "Underscore"},
+                {"name": "Jade"},
+                {"name": "Other:"}
+            ],
+			"Javascript Testing Frameworks" :[
+                {"name": "Jasmine"},
+                {"name": "Mocha"},
+                {"name": "CasperJS"},
+                {"name": "Karma"},
+                {"name": "Qunit"},
+                {"name": "Other:"}
+            ],
+			"Javascript Debug" :[
+                {"name": "FireBug"},
+                {"name": "Webkit"},
+                {"name": "Developer Toolbar (IE)"},
+                {"name": "Other:"}
+            ],
+			"Javascript EcmaScript 5 (HTML 5)" :[
+                {"name": "Canvas API"},
+                {"name": "General Ecmascript 5 (web workers, local storage, etc..)"},
+                {"name": "Binding events"}
+            ]
+        },
+        "CSS (Presentation)" : {
+            "CSS" :[
+                {"name": "CSS"},
+                {"name": "CSS 3"},
+                {"name": "CSS 3 transitions & animations"},
+                {"name": "CSS Frameworks"},
+                {"name": "CSS Layouts (flexbox, creating layouts)"},
+				{"name": "Cross brower compatibility"},
+                {"name": "LESS"},
+                {"name": "SASS"}
+            ]
+        }
+    }
+}

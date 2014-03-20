@@ -1,0 +1,89 @@
+{
+    "group": "ALM",
+    "expertises": {
+        "General": {
+            "Programming Languages": [
+                {"name": "C/C++"},
+                {"name": "Java"},
+                {"name": "Javascript"},
+                {"name": "Perl"},
+                {"name": "PHP"},
+				{"name": "Ruby"},
+				{"name": "Python"}
+            ],
+            "Database": [
+                {"name": "SQL"},
+                {"name": "Designing Database Schema"},
+                {"name": "Creating ERD"},
+                {"name": "Writing SQL Statements"},
+                {"name": "Implementing Data Access Classes"},
+                {"name": "Optimization and Tuning  (Please Specify Database)"}
+            ]
+        },
+        "Tools & Platforms" : {
+            "Linux" :[
+                {"name": "Linux OS - desktop (end user) / server (administration) experience"},
+                {"name": "Linux OS - power user - worked over 2 years only  on  a linux desktop ( no windows!)"},
+                {"name": "Writing scripts - shell / bash / cshell etc"},
+                {"name": "Clustering and High Availability"},
+                {"name": "Install and Configure 3rd parties application - various daemon configuration /  administration"}
+            ],
+			"Virtualization" :[
+                {"name": "KVM"},
+                {"name": "XEN"},
+                {"name": "OpenStack"},
+                {"name": "Eucalyptus"},
+                {"name": "OpenNebula"}
+            ],
+			"Monitoring" :[
+                {"name": "zabbix"},
+                {"name": "Monit"}
+            ],
+			"EC2" :[
+                {"name": "AWS CloudFormation"}
+            ],
+			"MySQL" :[
+                {"name": "Clustering"},
+                {"name": "Performance"},
+                {"name": "Tuning"}
+            ],
+			"JBoss&Tomcat" :[
+                {"name": "JBoss"},
+                {"name": "Tomcat"},
+                {"name": "Clustering"},
+                {"name": "Performance"},
+                {"name": "Tuning"}
+            ],
+			"SCM" :[
+                {"name": "Bugzilla"},
+                {"name": "Jira"},
+                {"name": "Subversion"},
+                {"name": "GIT"},
+                {"name": "Mercurial"}
+            ],
+			"Build Manager server" :[
+                {"name": "Luntbuild"},
+                {"name": "Hudson"},
+                {"name": "Jenkins"}
+            ],
+			"Automatic Deploy Tools" :[
+                {"name": "Chef"},
+                {"name": "Puppet"},
+                {"name": "Capistrano"}
+            ],
+			"Eclipse IDE" :[
+                {"name": "JDT"},
+                {"name": "WTP"},
+                {"name": "DLTP (Dynamic Languages)"},
+                {"name": "TPTP"}
+            ],
+            "Build script" : [
+                {"name": "ANT"},
+                {"name": "Maven2"},
+                {"name": "Make"},
+                {"name": "Shell Script"},
+                {"name": "Gradle)"}
+            ]
+        }
+    }
+}

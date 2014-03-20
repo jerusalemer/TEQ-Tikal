@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <tr>
+	<th></th>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Groups</th>
+  </tr>
+<% _.each(data, function(candidate) { %>
+<tr>
+  <td><input type="checkbox" /></td>
+  <td>
+	<%= candidate.firstName %>
+	<%= candidate.lastName %>
+  </td>
+  <td><%= candidate._id %></td>
+  <td>[
+	<% _.each(candidate.groups, function(group) { %>
+	<%= group %>
+	<% })%>
+  ]</td>
+<% }) %>
+</table>

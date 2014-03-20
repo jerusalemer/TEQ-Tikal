@@ -1,0 +1,38 @@
+<table class="table">
+  <tr class="success">
+	<th>Subject</th>
+	<th>Years of experience</th>
+	<th>Level of knowledge</th>
+  </tr>
+  <% _.each(get('expertises'), function (data, name) { %>
+  <tr>
+	<td colspan="3" class="info">
+	  <h4><%=name %></h4>
+	</td>
+  </tr>
+  <% _.each(data, function(data, name) { %> 
+  <tr>
+  <td colspan="3" class="info">
+	<h5><%-name %></h5>
+  </td>
+  </tr>
+  <% _.each(data, function(item) { %>
+  <tr>
+	<td><%=item.name %></td>
+	<td class="col-lg-1"><input type="text" class="form-control"></td>
+	<td class="col-lg-2">
+	  <select class="form-control">
+		<option>Noob</option>
+		<option>Pro</option>
+		<option>Ninja</option>
+		<option>Guru</option>
+	  </select>
+	</td>
+  </tr>
+  <% }) %>
+  <% })%>
+  <tr>
+  </tr>
+  <% }) %>
+</tr></table>
+<button type="button" class="btn btn-primary">Save</button>

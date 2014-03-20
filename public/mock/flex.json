@@ -1,0 +1,62 @@
+{
+    "group": "FLEX",
+    "expertises": {
+        "Clientside": {
+            "Flex": [
+                {"name": "Flex Data Driven-data visualization components (Grids, lists) , forms, charts, data collections"},
+                {"name": "Flex Media Driven-media servers, video, sound, gaming"},
+                {"name": "Action Script"},
+                {"name": "Flash"}
+            ],
+            "Flex4": [
+                {"name": "Custom Component Skinning"},
+                {"name": "Catalyst"}
+            ],
+			"Javascript/Ajax": [
+                {"name": "Dojo"},
+                {"name": "ExtJS"},
+                {"name": "Prototype"},
+                {"name": "HTML&JavaScript"}
+            ],
+			"Mobile development": [
+                {"name": "iOS"},
+                {"name": "Android"},
+                {"name": "Air"}
+            ]
+        },
+        "Tools & Platforms" : {
+            "Linux" :[
+                {"name": "Linux OS - desktop (end user) / server (administration) experience"},
+                {"name": "Linux OS - power user - worked over 2 years only  on  a linux desktop ( no windows!)"},
+                {"name": "Writing scripts - shell / bash / cshell etc"},
+                {"name": "Clustering and High Availability"},
+                {"name": "Install and Configure 3rd parties application - various daemon configuration /  administration"}
+            ],
+			"MySQL" :[
+                {"name": "Clustering"},
+                {"name": "Performance"},
+                {"name": "Tuning"}
+            ],
+			"JBoss&Tomcat" :[
+                {"name": "JBoss"},
+                {"name": "Tomcat"},
+                {"name": "Clustering"},
+                {"name": "Performance"},
+                {"name": "Tuning"}
+            ],
+			"CM" :[
+                {"name": "Bugzilla"},
+                {"name": "Subversion"},
+                {"name": "Git"},
+                {"name": "Luntbuild"},
+                {"name": "Hudson"}
+            ],
+			"Ant&Maven " :[
+                {"name": "ANT"},
+                {"name": "Maven2"},
+				{"name": "Make"},
+                {"name": "Shell Script"}
+            ]
+        }
+    }
+}
