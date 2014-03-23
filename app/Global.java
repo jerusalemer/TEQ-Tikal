@@ -1,8 +1,12 @@
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import controllers.CandidateController;
 import controllers.QuestionnaireController;
 import dao.CandidateDao;
 import dao.QuestionnarieDao;
-import model.*;
+import model.Expertise;
+import model.Group;
+import model.Questionnarie;
 import model.solr.repository.CandidatesRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -45,8 +49,12 @@ public class Global extends GlobalSettings {
         CsvExporter setCsvExporter = ctx.getBean(CsvExporter.class);
         candidateController.setUp(candidateDao, setCsvExporter, candidateFactory,mailSender);
 
-        //setup mock
-        setupMockObjects(questionnarieDao, candidateFactory);
+        final Config config = ConfigFactory.load();
+        final String cleanDataOnStart = config.getString("clean.data.startup");
+        if( cleanDataOnStart !=null && Boolean.valueOf(cleanDataOnStart)) {
+            //setup mock
+             setupMockObjects(questionnarieDao, candidateFactory);
+        }
 
         super.onStart(app);
         //load all from mongo to solr
