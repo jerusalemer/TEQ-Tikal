@@ -33,7 +33,10 @@ public class SpringConfig {
 
     @Bean
     public SolrServer solrServer() {
-        return new HttpSolrServer("http://localhost:8983/solr");
+        Config config = ConfigFactory.load();
+        final String solrUrl = config.getString("prod.solr.url");
+        assert solrUrl!=null;
+        return new HttpSolrServer(solrUrl);
     }
 
     @Bean

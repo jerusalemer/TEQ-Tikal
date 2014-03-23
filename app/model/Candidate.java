@@ -10,7 +10,7 @@ import java.util.*;
  * Created by Art on 1/21/14.
  */
 @Document(collection = "candidates")
-public class Candidate {
+public class    Candidate {
 
     @Id
     @Field("email")
